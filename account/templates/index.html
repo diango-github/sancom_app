@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <p>こんにちは　{{visiter}} さん</p>
+        <br>
+        <h5>フリーコンテンツ</h5>
+        <ul>
+            <li class="h6 mb-3"><a href="{% url 'sancomcontents' %}">日英中ビジネス文例</a></li>
+            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">一般公開コンテンツ</a></li>
+        </ul>
+        <h5>有料コンテンツ</h5>
+        <ul>
+            <li class="h6 mb-3">準備中</li>
+        </ul>
+        <h5>オンライン発音コーチング</h5>
+        <ul>
+            <li class="h6 mb-3">準備中</li>
+        </ul>
+        <h5>SANCOM専用SNS</h5>
+        <ul>
+            <li class="h6 mb-3">準備中</li>
+        </ul>
+    {% else %}
+    <br>
+    <h5 class="h6 mb-3" >会員様</h4>
+    <ul>
+        <li class="h6 mb-3">「ログイン」をクリックしてお進みください。</li>
+    </ul>
+    <h5 class="h6 mb-3" >入会を希望される方</h4>
+    <ul>
+        <li class="h6 mb-3">「入会」をクリックして手続きを行ってください。</li>
+        <li class="h6 mb-3">費用は発生しません。</li>
+        <li class="h6 mb-3">入会にはEメールアドレスが必要です。</li>
+        <li class="h6 mb-3">入会後、フリーコンテンツをご利用いただけます。</li>
+        <li class="h6 mb-3">SANCOMが提供する付加価値をお確かめください。</li>
+    </ul>
+    
+    {% endif %}
+
+    {% endblock %}
