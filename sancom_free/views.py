@@ -1,3 +1,4 @@
+from config.settings import BASE_DIR
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import IntegrityError
@@ -16,6 +17,7 @@ import numpy as np
 import random
 import datetime
 from django.utils.datastructures import MultiValueDictKeyError
+
 
 class Lan_appView(TemplateView):
     def __init__(self):
@@ -271,7 +273,8 @@ class Esplite(TemplateView):
             start_position = request.POST['start_position']
             end_position = request.POST['end_position']
             duration = request.POST['duration']
-            sound = './static/' + esound
+            #sound = './static/' + esound
+            sound = BASE_DIR + '/static/' + esound
             in_wav = wave.Wave_read(sound)
             nchannels, sampwidth, framerate, nframes, comptype, compname = in_wav.getparams()
             st = float(start_position)/float(duration)
@@ -283,7 +286,8 @@ class Esplite(TemplateView):
             x = tmp_data[start*nchannels:end*nchannels] #切り出し
             #出力ファイル書き込み
             id = str(self.request.user.id)
-            newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            #newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            newsound = BASE_DIR + '/static/sancom_free/sound/sound_' + id + '.wav'
             out_wav = wave.Wave_write(newsound)
             nframes = x.size//nchannels
             out_wav.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
@@ -350,7 +354,8 @@ class Csplite(TemplateView):
             start_position = request.POST['start_position']
             end_position = request.POST['end_position']
             duration = request.POST['duration']
-            sound = './static/' + csound
+            #sound = './static/' + csound
+            sound = BASE_DIR + '/static/' + csound
             in_wav = wave.Wave_read(sound)
             nchannels, sampwidth, framerate, nframes, comptype, compname = in_wav.getparams()
             st = float(start_position)/float(duration)
@@ -362,7 +367,8 @@ class Csplite(TemplateView):
             x = tmp_data[start*nchannels:end*nchannels] #切り出し
             #出力ファイル書き込み
             id = str(self.request.user.id)
-            newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            #newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            newsound = BASE_DIR + '/static/sancom_free/sound/sound_' + id + '.wav'
             out_wav = wave.Wave_write(newsound)
             nframes = x.size//nchannels
             out_wav.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
@@ -477,7 +483,8 @@ class Lan_appView2(TemplateView):
             start_position = request.POST['start_position']
             end_position = request.POST['end_position']
             duration = request.POST['duration']
-            sound = './static/' + esound
+            #sound = './static/' + esound
+            sound = BASE_DIR + '/static/' + esound
             in_wav = wave.Wave_read(sound)
             nchannels, sampwidth, framerate, nframes, comptype, compname = in_wav.getparams()
             st = float(start_position)/float(duration)
@@ -489,7 +496,8 @@ class Lan_appView2(TemplateView):
             x = tmp_data[start*nchannels:end*nchannels] #切り出し
             #出力ファイル書き込み
             id = str(self.request.user.id)
-            newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            #newsound = './static/sancom_free/sound/sound_' + id + '.wav'
+            newsound = BASE_DIR + '/static/sancom_free/sound/sound_' + id + '.wav'
             out_wav = wave.Wave_write(newsound)
             nframes = x.size//nchannels
             out_wav.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))

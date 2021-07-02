@@ -2,6 +2,7 @@ from django import forms
 from account.models import File
 from django.contrib.auth.models import User
 import openpyxl
+from config.settings import BASE_DIR
 
 class Excel_link:
 
@@ -14,7 +15,8 @@ class Excel_link:
         self.excel_data=[]
     
     def getlist(self):
-        wb=openpyxl.load_workbook("./static/" + self.fname)
+        #wb=openpyxl.load_workbook("./static/" + self.fname)
+        wb=openpyxl.load_workbook(BASE_DIR + '/static/' + self.fname)
         sh=wb.get_sheet_by_name(self.sheet)
         for row in range(2,sh.max_row +1 ):
             item=sh["B"+str(row)].value

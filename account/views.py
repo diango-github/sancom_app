@@ -8,6 +8,8 @@ from django.contrib.auth import (
 from .forms import UserCreateForm
 from .models import User, File
 import openpyxl
+import os
+from config.settings import BASE_DIR
 
 User = get_user_model()
 
@@ -24,8 +26,10 @@ class Top(generic.TemplateView):
             file = File()
             file.owner = User.objects.filter(email=user_name).first()
             file.filename1 = 'SancomContents_' + id + '.xlsx'
-            wb=openpyxl.load_workbook("./static/SancomContents.xlsx")
-            wb.save("./static/" + file.filename1)
+            wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
+            wb.save(BASE_DIR + '/static/' + file.filename1)
+            #wb=openpyxl.load_workbook("./static/SancomContents.xlsx")
+            #wb.save("./static/" + file.filename1)
             file.save()
 
             self.params['visiter'] = user_name
