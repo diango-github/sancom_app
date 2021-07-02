@@ -1,7 +1,7 @@
 from django import forms
 from account.models import File
 from django.contrib.auth.models import User
-#import openpyxl
+import openpyxl
 from config.settings import BASE_DIR
 
 class Excel_link:
@@ -16,23 +16,23 @@ class Excel_link:
     
     def getlist(self):
                 #wb=openpyxl.load_workbook("./static/" + self.fname)
-        #wb=openpyxl.load_workbook(BASE_DIR + '/static/' + self.fname)
-        #sh=wb.get_sheet_by_name(self.sheet)
-        #for row in range(2,sh.max_row +1 ):
-            #item=sh["B"+str(row)].value
-            #category=sh["C"+str(row)].value
-            #japanese=sh["D"+str(row)].value
-            #english=sh["E"+str(row)].value
-            #esound=sh["F"+str(row)].value
-            #eword1=sh["G"+str(row)].value
-            #eword2=sh["H"+str(row)].value
-            #eword3=sh["I"+str(row)].value
-            #chinese=sh["J"+str(row)].value
-            #csound=sh["K"+str(row)].value
-            #cword1=sh["L"+str(row)].value
-            #cword2=sh["M"+str(row)].value
-            #cword3=sh["N"+str(row)].value
-            #self.verb_dic.setdefault(item,{"category":category, "japanese":japanese, "english":english, "esound":esound,"eword1":eword1, "eword2":eword2, "eword3":eword3, "chinese":chinese,"csound":csound,"cword1":cword1,"cword2":cword2,"cword3":cword3})
+        wb=openpyxl.load_workbook(BASE_DIR + '/static/' + self.fname)
+        sh=wb.get_sheet_by_name(self.sheet)
+        for row in range(2,sh.max_row +1 ):
+            item=sh["B"+str(row)].value
+            category=sh["C"+str(row)].value
+            japanese=sh["D"+str(row)].value
+            english=sh["E"+str(row)].value
+            esound=sh["F"+str(row)].value
+            eword1=sh["G"+str(row)].value
+            eword2=sh["H"+str(row)].value
+            eword3=sh["I"+str(row)].value
+            chinese=sh["J"+str(row)].value
+            csound=sh["K"+str(row)].value
+            cword1=sh["L"+str(row)].value
+            cword2=sh["M"+str(row)].value
+            cword3=sh["N"+str(row)].value
+            self.verb_dic.setdefault(item,{"category":category, "japanese":japanese, "english":english, "esound":esound,"eword1":eword1, "eword2":eword2, "eword3":eword3, "chinese":chinese,"csound":csound,"cword1":cword1,"cword2":cword2,"cword3":cword3})
         self.verb_list=list(self.verb_dic.keys())
         for i in range(len(self.verb_list)):
             self.listbox.append((self.verb_list[i], self.verb_list[i]))
