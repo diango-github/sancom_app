@@ -12,17 +12,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url #追加
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
-
-DEBUG = False #Trueから変更
-
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com'] #追加
-#ALLOWED_HOSTS = ['*'] #こちらでもOK
 
 # Application definition
 INSTALLED_APPS = [
@@ -45,7 +39,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', #追加
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -74,13 +67,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #sqlite3から変更
-        'NAME': 'name',
-        'USER': 'user',
-        'PASSWORD': '',
+        'NAME': 'sancom_db',
+        'USER': 'db_ozawa',
+        'PASSWORD': 'xiaozekedian',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -111,36 +111,44 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'account.User'
 LOGIN_REDIRECT_URL = '/'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/mediamedia/'
-
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#追加
+#デプロイ設定
+DEBUG = False
+
+#ローカルとデプロイの振り分け
 try:
     from .local_settings import *
 except ImportError:
     pass
 
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 if not DEBUG:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
-    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-    import django_heroku
+    import environ
+    env = environ.Env()
+    env.read_env(os.path.join(BASE_DIR, '.env'))
 
-    django_heroku.settings(locals())
+    SECRET_KEY = env('SECRET_KEY')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
-db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
-DATABASES['default'].update(db_from_env)
+    DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+    STATIC_ROOT = '/usr/share/nginx/html/static'
+    MEDIA_ROOT = '/usr/share/nginx/html/static'

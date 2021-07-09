@@ -28,4 +28,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('sancom_free/', include('sancom_free.urls')),
     path('email/', emailfunc),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
