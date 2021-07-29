@@ -64,23 +64,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', #sqlite3から変更
-        'NAME': 'sancom_db',
-        'USER': 'db_ozawa',
-        'PASSWORD': 'xiaozekedian',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 #DATABASES = {
     #'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', #sqlite3から変更
+        #'NAME': 'sancom_db',
+        #'USER': 'db_ozawa',
+        #'PASSWORD': 'xiaozekedian',
+        #'HOST': 'localhost',
+        #'PORT': '',
     #}
 #}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -123,6 +123,9 @@ EMAIL_USE_TLS = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+SESSION_COOKIE_SAMESITE = None
+CSRF_COOKIE_SAMESITE = None
+
 #デプロイ設定
 DEBUG = False
 
@@ -150,5 +153,6 @@ if not DEBUG:
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
-    STATIC_ROOT = '/usr/share/nginx/html/static'
-    MEDIA_ROOT = '/usr/share/nginx/html/static'
+    STATIC_ROOT = '/home/xiaoze/src/sancom_app/static'
+    #STATIC_ROOT = '/usr/share/nginx/html/static'
+    MEDIA_ROOT = '/usr/share/nginx/html/media'

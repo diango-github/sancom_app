@@ -4,3 +4,4 @@ venv
 _pycache_
 .DS_Store
 local_settings.py
+.env

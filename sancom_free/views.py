@@ -306,7 +306,7 @@ class Esplite(TemplateView):
             self.params['length'] = duration
             self.params['end'] = end_position
             self.params['finish_comment'] = "以下に分割ファイルを作成しました。"              
-            return render(request, 'sancom_free/Esplite.html', self.params) 
+            return render(request, 'sancom_free/esplite.html', self.params) 
 
 class Csplite(TemplateView):
     def __init__(self):
