@@ -6,7 +6,7 @@
     <br>
     <form action="{% url 'sancomcontents' %}" method="post">
         {% csrf_token %}
-        <h6 class="table">リストから文例を選んで読み込んでください。</h6>
+        <h6 class="table">リストから文例を選び「読込」を押します。</h6>
     <div class="selection">
         <div class="space1">
                 {{ form1 }}
@@ -18,28 +18,32 @@
             <input class="btn btn-primary my-2" type="submit" name="start" value="読込">
         </div>
         <div class="space3">
-            <h6>{{item}}</h6>
-            <h6>{{category}}</h6>
+            <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'top' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">メインページへ</a>
+            <!--<h6>{{item}}</h6>
+            <h6>{{category}}</h6>-->
         </div>
+    </div>
+    {% if item %}
+    <h6>カテゴリ：{{category}}</h6>
+    <p>日本語</p>
+    <div class="sentence">
+        <h6 id="label1" class="space2">{{japanese}}</h6>
     </div>
     <br>
-    <div>
-    <h5 id="label1">{{japanese}}</h5>
+    <h6>英語</h6>    
+    <div class="sentence">
+        <h5 id="label2" class="space2">{{english}}</h5>
     </div>
-    <div class="target">
-        <div class="pad">
-            <h5 id="label2" class="">{{english}}</h5>
-            <audio id="bgm1" ><source src="{% static esound %}" ></audio>
-            <button id="btn-play1" type="button">音声</button><a class="left_m1" href="{% url 'eshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}" class="">発声訓練</a>
-        </div>
-        <div class="pad">
-            <h5 id="label3" class="">{{chinese}}</h5>
-            <audio id="bgm2" ><source src="{% static csound %}" ></audio>
-            <button id="btn-play2" type="button">音声</button><a class="left_m1" href="{% url 'cshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}" class="">発声訓練</a>
-        </div>
+    <audio id="bgm1" ><source src="{% static esound %}" ></audio>
+    <button id="btn-play1" class="space2" type="button">音声</button><a class="btn btn-primary my-2, left_m1" href="{% url 'eshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}" class="">訓練ページへ移動</a>
+    <br><br>
+    <h6>中国語</h6>   
+    <div class="sentence">
+        <h5 id="label3" class="space2">{{chinese}}</h5>
     </div>
-    <br>
-    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'top' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">メインページへ</a>
+    <audio id="bgm2" ><source src="{% static csound %}" ></audio>
+    <button id="btn-play2" class="space2" type="button">音声</button><a class="btn btn-primary my-2, left_m1" href="{% url 'cshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}" class="">訓練ページへ移動</a>
+    {% endif %}
     </form>
 
   <script>

@@ -3,38 +3,37 @@
 {% block body %}
 
     {% if user.is_authenticated %}
-        <p>こんにちは　{{visiter}} さん</p>
+        <p>こんにちは {{visiter}} さん</p>
         <br>
-        <h5>フリーコンテンツ</h5>
+        <h5>SANCOM提供フリーコンテンツ</h5>
+        <h5><a href="{% url 'sancomcontents' %}">◆日英中ビジネス文例</a></h5>
         <ul>
-            <li class="h6 mb-3"><a href="{% url 'sancomcontents' %}">日英中ビジネス文例</a></li>
-            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">一般公開コンテンツ</a></li>
+            <li class="h6 mb-3">現在540文例（逐次拡充予定）</li>
+            <li class="h6 mb-3">基本文例暗唱型</li>
+            <li class="h6 mb-3">　⇒会話の引き出しを増やす</li>
+            <li class="h6 mb-3">　⇒発音＆発声訓練</li>
+            <li class="h6 mb-3">　⇒ヒヤリング力向上</li>
         </ul>
-        <h5>有料コンテンツ</h5>
+        <h5>著作権フリーコンテンツ</h5>
+        <h5><a href="{% url 'publiccontents' %}">◆一般公開教材</a></h5>
         <ul>
-            <li class="h6 mb-3">準備中</li>
-        </ul>
-        <h5>オンライン発音コーチング</h5>
-        <ul>
-            <li class="h6 mb-3">準備中</li>
-        </ul>
-        <h5>SANCOM専用SNS</h5>
-        <ul>
-            <li class="h6 mb-3">準備中</li>
+            <li class="h6 mb-3">VOA/LIBRIBOX/ANDERSEN提供</li>
+            <li class="h6 mb-3">シャドーイング訓練型</li>
+            <li class="h6 mb-3">　⇒ヒヤリング力向上</li>
         </ul>
     {% else %}
     <br>
-    <h5 class="h6 mb-3" >会員様</h4>
+    <h5 class="h6 mb-3" >会員の方</h4>
     <ul>
-        <li class="h6 mb-3">「ログイン」をクリックしてお進みください。</li>
+        <li class="h6 mb-3">「ログイン」よりお進みください。</li>
     </ul>
-    <h5 class="h6 mb-3" >入会を希望される方</h4>
+    <h5 class="h6 mb-3" >これから入会される方</h4>
     <ul>
-        <li class="h6 mb-3">「入会」をクリックして手続きを行ってください。</li>
+        <li class="h6 mb-3">「入会」にてお手続きください。</li>
         <li class="h6 mb-3">費用は発生しません。</li>
         <li class="h6 mb-3">入会にはEメールアドレスが必要です。</li>
+        <li class="h6 mb-3">（パスワードリセットで使います）</li>
         <li class="h6 mb-3">入会後、フリーコンテンツをご利用いただけます。</li>
-        <li class="h6 mb-3">SANCOMが提供する付加価値をお確かめください。</li>
     </ul>
     
     {% endif %}

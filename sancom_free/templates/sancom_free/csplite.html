@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block body %}
+    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'cshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">元に戻る</a>
     <form name="shadow" method="post">
     {% csrf_token %}
+    <br>
     <h5 class="" id="sentence2" >{{chinese|safe}}</h5>
     <div class="">
     <audio class="pad" id="bgm2" preload="auto" controls ><source src="{% static csound %}" ></audio>
@@ -18,16 +20,16 @@
     <div class="space4">
         <label>1.　分割を開始したい位置で再生停止</label><br>
         <label>2.　<button id="btn-play1" type="button">ここを押して位置読込</button> </label><br>
-        <label class="space4">開始位置<input id="start_position" type="text" size="7" name="start_position" value="{{start}}"></label><br>
-        <label class="space4">　　総長<input id="duration" type="text" size="7" name="duration" value="{{length}}"></label><br>
+        <label class="space4"><input id="start_position" type="text" placeholder="開始位置" size="7" name="start_position" value="{{start}}"></label>
+        <label ><input id="duration" type="text" placeholder="総長" size="7" name="duration" value="{{length}}"></label><br>
         <label>3.　分割を終了したい位置で再生停止</label><br>
         <label>4.　<button id="btn-play2" type="button">ここを押して位置読込</button> </label><br>
-        <label class="space4">終了位置<input id="end_position" type="text" size="7" name="end_position" value="{{end}}"></label><br>
+        <label class="space4"><input id="end_position" type="text" placeholder="終了位置" size="7" name="end_position" value="{{end}}"></label><br>
         <label>5.　 <input type="submit" value="分割ファイル作成" name="split" class="btn btn-primary my-2"> </label><br>
         <div class="">
             <p>{{finish_comment}}</p>
             <audio id="bgm3" ><source src="{% static sound_splited %}" ></audio>
-            <button class="space1" id="btn-play3" type="button">再生</button>
+            <button class="space1" id="btn-play3" type="button">分割ファイル再生</button>
             <select class="space1" name="speed3" onchange="speedSet3()">
                 <option  value="">再生速度120%</option>
                 <option  value="">再生速度100%</option>
@@ -36,8 +38,6 @@
             </select>
         </div>
     </div>
-    <br>
-    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'cshadow' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">元に戻る</a>
     </form>
 
     <script>
