@@ -7,8 +7,8 @@
     {% csrf_token %}
     <br>
     <h5 id="sentence1" class="">{{japanese|safe}}</h5>
-    <div class="space2">
-    <input id="word" class="space2" placeholder="ここに英単語コピペ" type="text" size="18" name="word">
+    <div class="">
+    <input id="word" class="" placeholder="ここに単語コピペ" type="text" size="14" name="word">
     <input class="btn btn-primary my-2, space2" type="submit" value="ネット辞書" name="scraping" class="btn btn-primary my-2">
     <h6 class="space2">{{word|safe}}　　{{pronWeblio|safe}}</h6>
     <h6 class="space2">{{meaningWeblio|safe}}</h6>
@@ -40,13 +40,13 @@
     </select>
     </div>
     <div class="pad" >
-        <p class="space2" >⓵文字を表示しながらシャドーイングしましょう<br>　(ワンテンポ遅れて追従します)</p>
-        <p class="space2" >⓶文字を非表示にしてシャドーイングしましょう</p>
-        <p class="space2" >⓷文字を非表示にして復唱しましょう<br>　(言い終わってから発声します)</p>
-        <p class="space2" >⓸速さ/発音/抑揚を模写しましょう（反復１００回以上推奨）</p>
-        <p class="space2" >手応えを感じたら<a class="" href=""> 暗唱訓練ページへ(準備中)</a></p>
+        <p class="" >⓵文字を表示してシャドーイングします<br>　(ワンテンポ遅れて追従)</p>
+        <p class="" >⓶文字を消してシャドーイングします</p>
+        <p class="" >⓷文字を消して復唱します<br>　(言い終わってから発声)</p>
+        <p class="" >⓸速さ/発音/抑揚を模写します</p>
+        <p class="" >納得できたら<a class="" href=""> 暗唱訓練ページへ(準備中)</a></p>
         <br>
-        <p class="space2" >※長くてやりにくい場合は<a class="btn btn-primary my-2, space1" href="{% url 'esplite' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">音声分割ページへ</a></p>
+        <p class="" >長文でやりにくい場合は<a class="btn btn-primary my-2, space1" href="{% url 'esplite' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">音声分割ページへ</a></p>
     </div>
     </form>
 

@@ -5,22 +5,19 @@
     {% if user.is_authenticated %}
         <p>こんにちは {{visiter}} さん</p>
         <br>
-        <h5>SANCOM提供フリーコンテンツ</h5>
-        <h5><a href="{% url 'sancomcontents' %}">◆日英中ビジネス文例</a></h5>
+        <h5>フリーコンテンツ</h5>
         <ul>
-            <li class="h6 mb-3">現在540文例（逐次拡充予定）</li>
-            <li class="h6 mb-3">基本文例暗唱型</li>
-            <li class="h6 mb-3">　⇒会話の引き出しを増やす</li>
-            <li class="h6 mb-3">　⇒発音＆発声訓練</li>
-            <li class="h6 mb-3">　⇒ヒヤリング力向上</li>
+            <li class="h6 mb-3"><a href="{% url 'sancomcontents' %}">日英中ビジネス文例540</a></li>
+            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">著作権フリー(一般公開)</a></li>
         </ul>
-        <h5>著作権フリーコンテンツ</h5>
-        <h5><a href="{% url 'publiccontents' %}">◆一般公開教材</a></h5>
+        <h5>有料コンテンツ</h5>
         <ul>
-            <li class="h6 mb-3">VOA/LIBRIBOX/ANDERSEN提供</li>
-            <li class="h6 mb-3">シャドーイング訓練型</li>
-            <li class="h6 mb-3">　⇒ヒヤリング力向上</li>
+            <li class="h6 mb-3">プロバイダー募集中</li>
         </ul>
+        <h5>オンライン発音コーチング</h5>
+            <ul>
+                <li class="h6 mb-3">準備中</li>
+            </ul>        
     {% else %}
     <br>
     <h5 class="h6 mb-3" >会員の方</h4>
@@ -32,9 +29,9 @@
         <li class="h6 mb-3">「入会」にてお手続きください。</li>
         <li class="h6 mb-3">費用は発生しません。</li>
         <li class="h6 mb-3">入会にはEメールアドレスが必要です。</li>
-        <li class="h6 mb-3">（パスワードリセットで使います）</li>
         <li class="h6 mb-3">入会後、フリーコンテンツをご利用いただけます。</li>
     </ul>
+    <p>iPhone/iPadで開設したメールアドレスは、パスワード再設定の際にメール受信ができませんので予めご了承ください。</p>
     
     {% endif %}
 
