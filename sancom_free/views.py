@@ -518,7 +518,7 @@ def en_repeat_list(request):
     erepeat = Erepeat.objects.filter(owner=request.user).order_by('dictionary')
     for item in erepeat:
         key = item.dictionary.id
-        day =item.date
+        day = str(item.date.month) + "月" + str(item.date.month) + "日"
         if key not in elist:
             elist.append(key)
             object.setdefault(key,[day])
@@ -568,7 +568,7 @@ def ch_repeat_list(request):
     crepeat = Crepeat.objects.filter(owner=request.user).order_by('dictionary')
     for item in crepeat:
         key = item.dictionary.id
-        day =item.date
+        day =str(item.date.month) + "月" + str(item.date.month) + "日"
         if key not in elist:
             elist.append(key)
             object.setdefault(key,[day])
