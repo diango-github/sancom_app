@@ -1,0 +1,101 @@
+{% extends 'sancom_free/layout.html' %}
+{% load static %}
+
+{% block title %}ビジネス文例５４０{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+<h5>記憶深化訓練</h5>
+
+{% if message1 %}
+    <br>
+    <form action="{% url 'en_deepen' %}" method="post">
+    {% csrf_token %}
+    <label>{{dictionary_choiced}}</label>
+    <table class="table mt-6">
+        {% for record in records %}
+        <tr>
+            <td>{{record.date}}</td>
+            {% if record.status == 0 %}<td>登録日</td>
+            {% elif record.status == 1 %}<td>レベル１：思い出せなかった</td>
+            {% elif record.status == 2 %}<td>レベル２：間違えた</td>
+            {% elif record.status == 3 %}<td>レベル３：たどたとしく言えた</td>
+            {% elif record.status == 4 %}<td>レベル４：直ぐに言えたが発音は要改善</td>
+            {% else %}><td>レベル５：自分なりのベストな発音で言えた</td>{% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    <input class="btn btn-primary my-2" type="submit" name="start" value="訓練開始">
+    </form>
+    <a class="py-0" href="{% url 'en_deepen_list' %}">リストへ戻る</a>
+{% endif %}
+
+{% if message2 %}
+<table class="table mt-3">
+<tr style="color:goldenrod">
+    <td>{{dictionary_choiced.japanese}}</td>
+</tr>
+</table>
+<form action="{% url 'en_deepen' %}" method="post">
+{% csrf_token %}
+<p class="space2">1. 初めに英語で言ってください</p>
+<p class="space2">2. 次に確認ボタンを押して自己採点をします</p>
+<button id="btn1" class="btn btn-primary my-2, space4" type="submit" name="verify" >確認</button>
+    <br>
+    {% if message3 %}
+    <label class="space2" >　{{dictionary_choiced.english}}</label>
+    <br>
+    <audio class="space4" id="bgm1" controls controlslist="nodownload" ><source src="{% static dictionary_choiced.esound %}" ></audio>
+    <p class="space2">3. 採点結果を選択して訓練履歴追加ボタンを押してください</p>
+    <label class="space2">{{form}}</label>
+    <input class="btn btn-primary my-2, space4" type="submit" name="register" value="訓練履歴追加" >
+    <br><br>
+    <a class="py-0, space4" href="{% url 'en_deepen_list' %}">追加をせずにリストへ戻る</a>
+    {% endif %}
+</form>
+{% endif %}
+
+{% if message4 %}
+    <br>
+    <form action="{% url 'en_deepen' %}" method="post">
+    {% csrf_token %}
+    <label>{{dictionary_choiced}}</label>
+    <table class="table mt-6">
+        {% for record in records %}
+        <tr>
+            <td>{{record.date}}</td>
+            {% if record.status == 0 %}<td>登録日</td>
+            {% elif record.status == 1 %}<td>レベル１：思い出せなかった</td>
+            {% elif record.status == 2 %}<td>レベル２：間違えた</td>
+            {% elif record.status == 3 %}<td>レベル３：たどたとしく言えた</td>
+            {% elif record.status == 4 %}<td>レベル４：直ぐに言えたが発音は要改善</td>
+            {% else %}><td>レベル５：自分なりのベストな発音で言えた</td>{% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    {{message4}}
+    <br>
+    <label class="2">結果が安定していれば「終了」に移行できます</label>
+    <input class="btn btn-primary my-2, space2" type="submit" name="to_finish" value="終了" >
+    </form>
+    <br><br>
+    <a class="py-0" href="{% url 'erepeat' dictionary_choiced.id %}">もう一度 連続再生＆復唱訓練を行う</a
+    <br>
+    <a class="py-0, space4" href="{% url 'en_deepen_list' %}">メインリストへ戻る</a>
+{% endif %}
+
+{% if message5 %}
+<p>{{dictionary_choiced.item}} は終了に登録されました</p>
+<p class="space2">{{dictionary_choiced.japanese}}</p>
+<p class="space2">{{dictionary_choiced.english}}</p>
+<a class="py-0" href="{% url 'en_deepen_list' %}">リストへ戻る</a>
+{% endif %}
+
+<script>
+    const bgm1 = document.getElementById('bgm1');
+    const btn1 = document.getElementById('btn1');
+    btn1.addEventListener("click", ()=>{
+        bgm1.play();
+    });
+</script>
+
+{% endblock %}

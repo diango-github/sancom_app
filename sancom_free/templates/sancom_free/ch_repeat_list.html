@@ -1,0 +1,44 @@
+{% extends 'sancom_free/layout.html' %}
+
+{% block title %}ビジネス文例５４０{% endblock %}
+
+<!--{% block header %}
+<script>
+function sendGroupForm(page) {
+    document.group_form.action += page;
+    document.group_form.submit();
+}
+</script>
+<h1 class="display-4 text-primary">SNS</h1>
+<p>※グループのチェックをONにしてうupdateすると、そのグループに登録されている利用者のメッセージだけが表示されます。</p>
+{% if messages %}
+<ul class="messages">
+    {% for messag in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}-->
+
+{% block content %}
+<h5>連続再生＆復唱訓練</h5>
+<table class="table mt-3">
+<tr>
+    <th>文例</th>
+    <th>連続再生(1st)</th>
+    <th>連続再生(2nd)</th>
+    <th>連続再生(3rd)</th>
+    <th>　</th>
+</tr>
+{% for key, value in object.items %}
+<tr>
+    <td>{{key}}</td>
+    <td>{{value.0}}</td>
+    <td>{{value.1}}</td>
+    <td>{{value.2}}</td>
+    <td><a href="{% url 'ch_repeat' key %}"><button class="py-0">GO</button></a></td>
+</tr>
+{% endfor %}
+</table>
+<p>※一字一句というよりは、音とリズムで丸ごと覚えましょう</p>
+{% endblock %}

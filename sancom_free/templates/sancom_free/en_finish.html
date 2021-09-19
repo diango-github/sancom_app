@@ -1,0 +1,86 @@
+{% extends 'sancom_free/layout.html' %}
+{% load static %}
+
+{% block title %}ビジネス文例５４０{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+<h5>終了(定期確認)</h5>
+
+{% if message1 %}
+    <form action="{% url 'en_finish' %}" method="post">
+    {% csrf_token %}
+    <label class="space2">{{form}}</label>
+    <input class="btn btn-primary my-2, space2" type="submit" name="extract" value="抽出">
+    </form>
+    <a class="py-0" href="{% url 'trainingbox' %}">暗唱訓練BOXへ戻る</a>
+{% endif %}
+
+{% if message2 %}
+<form action="{% url 'en_finish' %}" method="post">
+    {% csrf_token %} 
+    {{message2}}
+    {% if message2 != "該当する文例はありません" %}
+    <input class="btn btn-primary my-2" type="submit" name="start" value="開始">
+    {% endif %}
+    </form>
+    <br>
+    <a class="py-0" href="{% url 'en_finish' %}">元に戻る</a>
+{% endif %}
+
+
+{% if message3 %}
+<table class="table mt-3">
+<tr style="color:goldenrod">
+    <td>{{dictionary_choiced.japanese}}</td>
+</tr>
+</table>
+<form action="{% url 'en_finish' %}" method="post">
+{% csrf_token %}
+<p class="space2">1. 初めに英語で言ってください</p>
+<p class="space2">2. 次に確認ボタンを押して記憶状態を確認してください</p>
+<button id="btn1" class="btn btn-primary my-2, space4" type="submit" name="verify" >確認</button>
+    <br>
+    {% if message4 %}
+    <label class="space2" >　{{dictionary_choiced.english}}</label>
+    <br>
+    <audio class="space4" id="bgm1" controls controlslist="nodownload" ><source src="{% static dictionary_choiced.esound %}" ></audio>
+    <p class="space2">3. 状況を選択して確認履歴追加ボタンを押してください</p>
+    <label class="space2">{{form}}</label>
+    <input class="btn btn-primary my-2, space4" type="submit" name="register" value="確認履歴追加" >
+    <br><br>
+    <a class="py-0, space4" href="{% url 'en_finish' %}">中止する</a>
+    {% endif %}
+</form>
+{% endif %}
+
+{% if message5 %}
+<br>
+<p>{{dictionary_choiced}}</p>
+
+<table class="table mt-6">
+    {% for record in records %}
+    <tr>
+        {% if record.status == 0 %}<td>登録日</td>
+        {% elif record.status == 1 %}<td>忘れていた</td>
+        {% elif record.status == 2 %}<td>忘れかけていた</td>
+        {% else %}><td>覚えていた</td>{% endif %}
+        <td>{{record.date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+    {{message5}}
+    <br>
+    <form action="{% url 'en_finish' %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-primary my-2" type="submit" name="next" value="次の文例" >
+    <a class="py-0, space4" href="{% url 'en_finish' %}">中止する</a>
+    </form>
+{% endif %}
+
+{% if message6 %}
+<p class="space2">{{message6}}</p>
+<br>
+<a class="py-0" href="{% url 'en_finish' %}">リストへ戻る</a>
+{% endif %}
+
+{% endblock %}

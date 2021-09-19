@@ -1,0 +1,26 @@
+{% extends 'sancom_free/layout.html' %}
+{% load static %}
+
+{% block title %}ビジネス５４０文例{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+<table class="table mt-3">
+    <tr><td>
+    <p class~"my-0">
+        {{contents.japanese}}
+    </p>
+    <p class~"my-0">
+        {{contents.english}}
+    </p>
+    <audio controls controlslist="nodownload" ><source src="{% static contents.esound %}"></audio>
+    </td></tr>
+</table>
+    <a href="{% url 'erepeat' contents.id %}"><button class="btn btn-outline-primary btn-sm mr-2">To 発声訓練</button></a>
+    <p class="my-0">　連続３０回の再生で暗唱訓練BOXに登録できます</p>
+    <br>
+    <a href="{% url 'escraper' contents.id %}"><button class="btn btn-outline-primary btn-sm mr-2">To ネット辞書</button></a>
+    <p class="my-0">　単語の意味や発音記号を調べます</p>
+    <br>
+    <a href="{% url 'eseparate' contents.id %}"><button class="btn btn-outline-primary btn-sm mr-2">To 音声分割</button></a>
+    <p class="my-0">　長文で復唱しにくい場合に利用します</p>
+{% endblock %}

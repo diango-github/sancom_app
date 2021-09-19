@@ -1,0 +1,123 @@
+{% extends "sancom_free/layout.html" %}
+{% load static %}
+
+{% block title %}ビジネス５４０文例{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+    <form name="shadow" method="post">
+    {% csrf_token %}
+    <p class="my-2" id="sentence1" >{{contents.japanese|safe}}</p>
+    <p class="my-2" id="sentence2" >{{contents.english|safe}}</p>
+    <audio id="bgm1" ><source src="{% static contents.esound %}" ></audio>
+    <div class="">
+    <input class="" id="btn-play3" type="button" value="連続再生" onclick="startPlay()" ><input class="space1" id="btn-play4" type="button" value="終了" onclick="stopPlay()" >
+    <button id="btn-play5" type="button" class="space2">文字表示</button><button class="space1" id="btn-play6" type="button">非表示</button>
+    </div>
+    <div class="">
+    <select class="" name="speed1" onchange="speedSet1()">
+        <option  value="">再生速度120%</option>
+        <option  value="">再生速度100%</option>
+        <option  value="">再生速度80%</option>
+        <option  value="">再生速度60%</option>
+    </select>
+    <select class="space1" name="pause" onchange="pauseSet()">
+        <option  value="">再生間隔 1秒</option>
+        <option  value="">再生間隔 3秒</option>
+        <option  value="">再生間隔 5秒</option>
+        <option  value="">再生間隔 7秒</option>
+        <option  value="">再生間隔 9秒</option>
+    </select>
+    </div>
+    <div class="pad" >
+        <p class="my-1" >※シャドーイング(追従)をしましょう</p>
+        <p class="my-1" >※復唱(言い終わってから発声)をしましょう</p>
+        <p id="com" class="my-1" >※速さ/発音/抑揚を模写しましょう</p>
+
+        <br>
+    </div>
+    {{message}}
+    </form>
+    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'econtents' contents.id %}">戻る</a>    
+    <script>
+        let tmr = 1000;
+
+        let ctr = 0;
+        let com = document.getElementById('com');
+        let parent =com.parentElement;
+        let ctrMessage = document.createElement('div');
+        let button = document.createElement('div');
+        parent.insertBefore(ctrMessage, null);
+
+        var in_play = false;
+        var bgm1 = document.querySelector("#bgm1");
+
+        function playAudio() {
+            if(!in_play) return;
+            bgm1.play();
+            ctrMessage.innerHTML = '<p>連続再生回数：' + ctr + '</p>';
+            if (ctr >= 30) {
+                parent.insertBefore(button, null);
+                button.innerHTML = '<input class="btn btn-primary my-2" type="submit" value="暗唱訓練BOXに登録">';
+            }
+
+            ctr++;
+        }
+
+        function startPlay(){
+            in_play = true;
+            playAudio();
+        }
+
+        function stopPlay(){
+            in_play = false;
+            bgm1.pause();
+
+            ctr =0;
+        }
+
+        function audioEnded(){
+            if (in_play) setTimeout(playAudio, tmr);
+        }
+
+        bgm1.addEventListener("ended", audioEnded, false);
+
+        const btn5  = document.querySelector("#btn-play5");
+        const btn6  = document.querySelector("#btn-play6");
+        let letters1 = document.getElementById('sentence1');
+        let letters2 = document.getElementById('sentence2');
+
+        letters1.style.color = '#BB00FF';
+        letters2.style.color = '#BB00FF';
+
+        function speedSet1(){
+            for ( i=0; i<4; i++ ){
+              switch (document.shadow.speed1.selectedIndex){
+                case 0: bgm1.playbackRate=1.2;break;
+                case 1: bgm1.playbackRate=1.0;break;
+                case 2: bgm1.playbackRate=0.8;break;
+                case 3: bgm1.playbackRate=0.6;break;
+              }
+            }
+        }
+
+        function pauseSet(){
+            for ( i=0; i<4; i++ ){
+              switch (document.shadow.pause.selectedIndex){
+                case 0: tmr=1000;break;
+                case 1: tmr=3000;break;
+                case 2: tmr=5000;break;
+                case 3: tmr=7000;break;
+                case 4: tmr=9000;break;
+              }
+            }
+        }
+
+        btn5.addEventListener("click", ()=>{
+            letters2.style.color = '#BB00FF';
+        });
+        btn6.addEventListener("click", ()=>{
+            letters2.style.color = '#FFFFFF';
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'sancom_free/layout.html' %}
+
+{% block title %}ビジネス文例５４０{% endblock %}
+
+<!--{% block header %}
+<script>
+function sendGroupForm(page) {
+    document.group_form.action += page;
+    document.group_form.submit();
+}
+</script>
+<h1 class="display-4 text-primary">SNS</h1>
+<p>※グループのチェックをONにしてうupdateすると、そのグループに登録されている利用者のメッセージだけが表示されます。</p>
+{% if messages %}
+<ul class="messages">
+    {% for messag in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}-->
+
+{% block content %}
+<h5>記憶深化訓練</h5>
+<form name="en_deepen" action="{% url 'en_deepen_list' %}" method="post" >
+    {% csrf_token %}
+    <label class="space2">{{form}}</label>
+    <input class="btn btn-primary my-2, space4" type="submit" name="en_deepen" value="GO">
+</form>
+<table class="table mt-6">
+<tr>
+    <!--<th>文例</th>-->
+    <th>訓練<br>回数</th>
+    <th>経過<br>日数</th>
+    <th>前回<br>結果</th>
+    <th>前々回<br> 結果</th>
+    <th>通知</th>
+    <th>　</th>
+</tr>
+{% for key, value in object.items %}
+<tr>
+    <!--<td>{{key.id}}</td>-->
+    <td>{{value.0.0}}</td>
+    <td>{{value.0.1}}</td>
+    <td>{{value.1.0}}<br>{{value.1.1}}</td>
+    <td>{{value.2.0}}<br>{{value.2.1}}</td>
+    <td></td>
+    <td><a href="{% url 'en_deepen' %}?id={{key.id}}"><button class="py-0">GO</button></a></td>
+</tr>
+{% endfor %}
+</table>
+<p>※通知欄は現在未対応です。将来的に「適正経過日数超過」「終了候補」等が表示されます</p>
+{% endblock %}

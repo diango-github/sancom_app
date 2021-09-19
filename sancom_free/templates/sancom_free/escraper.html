@@ -1,0 +1,30 @@
+{% extends "sancom_free/layout.html" %}
+{% load static %}
+
+{% block title %}ビジネス５４０文例{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+    <form name="shadow" method="post">
+    {% csrf_token %}
+    <p class="my-2" id="sentence2" >{{contents.japanese|safe}}</p>
+    <div class="uppermargin">
+    <p class="my-2" id="sentence2" >{{contents.english|safe}}</h5>
+    </div>
+    <div class="pad">
+    <input id="word" class="" placeholder="ここに単語コピペ" type="text" size="14" name="word">
+    <input class="btn btn-primary my-2, space2" type="submit" value="ネット辞書" name="scraping" class="btn btn-primary my-2">
+    <br><br>
+    <p class="my-1">単語：{{word|safe}}</p>
+    <p class="my-1">発音：{{pronWeblio|safe}}</p>
+    <p class="my-1">意味：</p>
+    <label class="my-0">{{meaningWeblio|safe}}</label><br>
+    {% if error %}
+    <h6 class="space2">{{ error }}</h6>
+    {% endif %}
+    </div>
+    </form>
+    <br><br>
+    <audio id="bgm1" controls controlslist="nodownload" ><source src="{% static contents.esound %}" ></audio>
+    <br><br>
+    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'econtents' contents.id %}">戻る</a>
+{% endblock %}

@@ -7,18 +7,18 @@
         <br>
         <h5>フリーコンテンツ</h5>
         <ul>
-            <li class="h6 mb-3"><a href="{% url 'sancomcontents' %}">日英中ビジネス540文例</a><br>(更に追加していきます)</li>
-            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">著作権フリー(一般公開)</a></li>
+            <li class="h6 mb-3"><a href="{% url 'business' %}">日英中ビジネス540文例<br>(更に追加していきます)</a></li>
+            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">一般公開コンテンツ</a></li>
         </ul>
         <h5>有料コンテンツ</h5>
         <ul>
-            <li class="h6 mb-3">プロバイダー募集中</li>
+            <li class="h6 mb-3">２０２２年以降に公開</li>
         </ul>
         <h5>オンライン発音コーチング</h5>
             <ul>
-                <li class="h6 mb-3">準備中</li>
+                <li class="h6 mb-3"><a href="">まもなく開始します(注)</a></li>
             </ul>
-        <p>ビジネス文例はナチュラルより若干速い口調で収録しています。物まね感覚で何度も復唱して音の変化や連結のルールを体得してください。根気よく続ければTOEICや英検のヒヤリングがゆっくり感じられるようになります。</p>        
+        <p>注：独自開発オンラインコミュニケーションツールにて行います。</p>        
     {% else %}
     <br>
     <h5 class="h6 mb-3" >会員の方</h4>
@@ -32,9 +32,9 @@
         <li class="h6 mb-3">入会にはEメールアドレスが必要です。</li>
         <li class="h6 mb-3">入会後、フリーコンテンツをご利用いただけます。</li>
     </ul>
-    <p><a href="https://san-com.jp">トップページへ</a></p>    
-    <p>iPhone/iPadで開設したメールアドレスは、パスワード再設定の際にメール受信ができませんので予めご了承ください。メモを取ってパスワードを紛失しないようにお願いします。</p>
-
+    <p>iPhone/iPadで開設したメールアドレスは、パスワード再設定時のメール受信に問題があるためパスワードの再設定ができません。パスワードを忘れないようにお願いします。</p>
+    <br>
+    <p><a href="https://san-com.jp">SANCOMトップページ</a></p>    
     {% endif %}
 
     {% endblock %}

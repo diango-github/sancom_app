@@ -1,0 +1,48 @@
+{% extends "sancom_free/layout.html" %}
+{% load static %}
+
+{% block title %}ビジネス５４０文例{% endblock %}
+{% block content %}
+<p>エビングハウス忘却理論を実践します</p>
+<h4 class="display-5 text-primry ">記憶根付</h4>
+<form action="{% url 'trainingbox' %}" method="post">
+{% csrf_token %}
+    <h5 class="space2">⓵連続再生＆復唱訓練</h4>
+    <ul class="space1">
+        <li>音とリズムを体に染み込ます訓練です</li>
+        <li>日に分けて計３回実施します</li>
+    </ul>
+    <div class="space2">
+        <label class="space2">{{en_form1}} <a href="{% url 'en_repeat_list' %}"> GO</a></label>
+        <label class="space2">{{ch_form1}} <a href="{% url 'ch_repeat_list' %}"> GO</a></label>
+    </div>
+    <h5 class="space2">⓶３文訓練</h5>
+    <ul class="space1">
+        <li>一度リセットして思い出す訓練です</li>        
+        <li>３文例以上になったら実施できます</li>
+    </ul>
+    <div class="space2">
+        <label class="space2">{{en_form2}} <a href="{% url 'en_3sentences' %}"> GO</a></label>
+        <label class="space2">{{ch_form2}} <a href="{% url 'ch_3sentences' %}"> GO</a></label>
+    </div>
+<h4 class="display-5 text-primry ">記憶深化</h4>
+     <ul>
+        <li>忘却と再記憶を繰り返して忘却速度を緩和していきます</li>
+        <li>復習優先順位の高い文例を抽出します</li>        
+        <li>自己採点で記憶状態をテストします</li>
+        <li>テスト履歴を鑑みて終了の見極めを行います</li>
+    </ul>
+    <div class="space2">
+        <label class="space2">{{en_form3}} <a href="{% url 'en_deepen_list' %}"> GO</a></label>
+        <label class="space2">{{ch_form3}} <a href="{% url 'ch_deepen_list' %}"> GO</a></label>
+    </div>
+<h4 class="display-5 text-primry ">終了(定期確認)</h4>
+    <ul>
+        <li>長期間不使用による忘却を防ぎます</li>
+    </ul>
+    <div class="space2">
+        <label class="space2">{{en_form4}} <a href="{% url 'en_finish' %}"> GO</a></label>
+        <label class="space2">{{ch_form4}} <a href="{% url 'ch_finish' %}"> GO</a></label>
+    </div>
+</form>
+{% endblock %}
