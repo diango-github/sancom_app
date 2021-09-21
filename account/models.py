@@ -78,3 +78,86 @@ class File(models.Model):
 
     def __str__(self):
         return '<' + self.filename1 + '(' + str(self.owner) + ')>'
+
+class Dictionary(models.Model):
+    item = models.CharField(max_length=20)
+    category = models.CharField(max_length=20)
+    japanese = models.CharField(max_length=50)
+    english = models.CharField(max_length=50)
+    esound = models.CharField(max_length=20)
+    chinese = models.CharField(max_length=50)
+    csound = models.CharField(max_length=20)
+ 
+    def __str__(self):
+        return '<' + self.item + '>'
+        #return '<' + self.item + '(' + str(self.category) + ')>'
+
+class Erepeat(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='e_memorytraining1')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class Crepeat(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_memorytraining1')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class E3sentences(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='e_memorytraining2')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class C3sentences(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_memorytraining2')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class Edeepen(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='e_memorytraining3')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class Cdeepen(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_memorytraining3')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class Efinish(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='e_memorytraining4')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+class Cfinish(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='c_memorytraining4')
+    dictionary = models.ForeignKey(Dictionary, on_delete=models.CASCADE)
+    status = models.IntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '<' + self.dictionary.item + '(' + str(self.owner) + ')>'
+
+

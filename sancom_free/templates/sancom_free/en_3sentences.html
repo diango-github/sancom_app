@@ -1,0 +1,77 @@
+{% extends 'sancom_free/common.html' %}
+{% load static %}
+
+{% block title %}ビジネス文例５４０{% endblock %}
+<!--{% block header %}　{% endblock %}-->
+{% block content %}
+<h5>３文訓練</h5>
+
+{% if message %}
+    <form action="{% url 'en_3sentences' %}" method="post">
+    {% csrf_token %}    
+    <table class="table mt-3">
+        {% for sentence in sentences %}
+        <tr>
+            <td>{{sentence.item}}</td>
+            <td>{{sentence.japanese}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {{message}}
+    {% if message1 %}
+        <input type="submit" name="start" value="開始">
+    {% endif %}
+    </form>
+{% endif %}
+
+{% if message2 %}
+<table class="table mt-3">
+<tr>
+    <td>{{dictionary_choiced.japanese}}</td>
+</tr>
+</table>
+<form action="{% url 'en_3sentences' %}" method="post">
+{% csrf_token %}
+<p class="space2">1. 英語で言ってください</p>
+<p class="space2">2. 確認ボタンを押して確認してください</p>
+<!--<input class="btn btn-primary my-2, space2" type="submit" name="verify" value="確認"  >-->
+<button id="btn1" class="btn btn-primary my-2, space2" type="submit" name="verify" >確認</button>
+    <br>
+    {% if message3 %}
+    <label class="space4" >　{{dictionary_choiced.english}}</label>
+    <br>
+    <audio class="space4" id="bgm1" controls controlslist="nodownload" ><source src="{% static dictionary_choiced.esound %}" ></audio>
+    <br>
+    <input class="btn btn-primary my-2, space2" type="submit" name="next" value="次へ" >
+    {% endif %}
+</form>
+{% endif %}
+
+{% if message4 %}
+    <form action="{% url 'en_3sentences' %}" method="post">
+    {% csrf_token %}
+    {{message4}}
+    <br>
+    <input class="btn btn-primary my-2, space2" type="submit" name="register" value="記憶深化に登録する" >
+    <br>
+    <input class="btn btn-primary my-2, space2" type="submit" name="start" value="もう一度実施する" >
+    </form>
+{% endif %}
+
+{% if message5 %}
+{{message5}}
+{% endif %}
+
+<br>
+<br>
+<a href="{% url 'trainingbox' %}"><button class="py-0">暗唱訓練BOXに戻る</button></a>
+
+<script>
+    const bgm1 = document.getElementById('bgm1');
+    const btn1 = document.getElementById('btn1');
+    btn1.addEventListener("click", ()=>{
+        bgm1.play();
+    });
+</script>
+
+{% endblock %}

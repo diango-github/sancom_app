@@ -6,10 +6,11 @@ from django.contrib.auth import (
      get_user_model, logout as auth_logout,
 )
 from .forms import UserCreateForm
-from .models import User, File
+from .models import User, File, Dictionary
 import openpyxl
 import os
 from config.settings import BASE_DIR
+from sancom_free.forms import Excel_link
 
 User = get_user_model()
 
@@ -28,9 +29,20 @@ class Top(generic.TemplateView):
             file.filename1 = 'SancomContents_' + id + '.xlsx'
             wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
             wb.save(BASE_DIR + '/static/' + file.filename1)
-                    #wb=openpyxl.load_workbook("./static/SancomContents.xlsx")
-                    #wb.save("./static/" + file.filename1)
             file.save()
+
+            if user_name == "kexiaoze53@gmail.com":
+                filename = 'SancomContents.xlsx'
+                sheet = 'sheet1'
+                excel = Excel_link(filename, sheet)
+                excel_list = excel.getlist()
+                verb_dic = excel_list[0]
+                verb_list = excel_list[1]
+                #dictionary = Dictionary.objects.all()
+                #dictionary.delete()
+                for i in range(len(verb_list)):
+                    dictionary = Dictionary(item=verb_list[i], category= verb_dic[verb_list[i]]["category"], japanese= verb_dic[verb_list[i]]["japanese"], english= verb_dic[verb_list[i]]["english"], esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"], chinese= verb_dic[verb_list[i]]["chinese"], csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"])
+                    dictionary.save()
 
             self.params['visiter'] = user_name
         return render(self.request,'index.html', self.params)
