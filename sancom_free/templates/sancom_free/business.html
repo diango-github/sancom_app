@@ -29,7 +29,7 @@ function sendGroupForm(page) {
         {{obj.japanese}}
     </p>
     <span class="float-left text-info">
-        {{obj.item}}　{{obj.category}}
+        <font size="2">{{obj.item}}　{{obj.category}}</font>
     </span>
     <span class="float-right">
         <!--obj.id 一次削除-->
@@ -43,17 +43,17 @@ function sendGroupForm(page) {
 <ul class="pagination justify-content-center">
     {% if data.has_previous %}
     <li class="page-item">
-        <a class="page-link" href="{% url 'business' %}">&laquo;　first</a>
+        <a class="page-link" href="{% url 'business' %}">&laquo;　最初</a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="{% url 'business' %}{{data.previous_page_number}}">&laquo;　prev</a>
+        <a class="page-link" href="{% url 'business' %}{{data.previous_page_number}}">&laquo;　前</a>
     </li>
     {% else %}
     <li class="page-item">
-        <a class="page-link">&laquo;　first</a>
+        <a class="page-link">&laquo;　最初</a>
     </li>
     <li class="page-item">
-        <a class="page-link">&laquo;　prev</a>
+        <a class="page-link">&laquo;　前</a>
     </li>
     {% endif %}
     <li class="page-item">
@@ -61,17 +61,17 @@ function sendGroupForm(page) {
     </li>
     {% if data.has_next %}
     <li class="page-item">
-        <a class="page-link" href="{% url 'business' %}{{data.next_page_number}}">next　&raquo;</a>
+        <a class="page-link" href="{% url 'business' %}{{data.next_page_number}}">次　&raquo;</a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="{% url 'business' %}{{data.paginator.num_pages}}">last　&raquo;</a>
+        <a class="page-link" href="{% url 'business' %}{{data.paginator.num_pages}}">最後　&raquo;</a>
     </li>
     {% else %}
     <li class="page-item">
-        <a class="page-link">next　&raquo;</a>
+        <a class="page-link">次　&raquo;</a>
     </li>
     <li class="page-item">
-        <a class="page-link">last　&raquo;</a>
+        <a class="page-link">最後　&raquo;</a>
     </li>
     {% endif %}
 </ul>
