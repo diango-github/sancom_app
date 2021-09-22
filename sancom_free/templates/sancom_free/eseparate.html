@@ -26,7 +26,6 @@
         <label >⓸<button id="btn-play2" type="button" class="py-0" >位置読込ボタン</button> </label><br>
         <label class="space4"><input id="end_position" type="text" placeholder="終了位置" size="7" name="end_position" value="{{end}}"></label><br>
         <label >⓹<input type="submit" value="分割ファイル作成ボタン" name="split" class="btn btn-primary my-2"> </label><br>
-        <br>
         {{finish_comment}}<br>
             <audio id="bgm3" ><source src="{% static sound_splited %}" ></audio>
             <button class="py-0" id="btn-play3" type="button">分割ファイル再生</button>
@@ -38,6 +37,7 @@
             </select>
     </div>
     </form>
+    <br>
     <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'econtents' contents.id %}">戻る</a>
     <script>
         var bgm2 = document.querySelector("#bgm2");       // 音声分割位置指示用
