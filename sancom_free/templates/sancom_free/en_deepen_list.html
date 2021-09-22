@@ -30,10 +30,10 @@ function sendGroupForm(page) {
 <table class="table mt-6">
 <tr>
     <!--<th>文例</th>-->
-    <th>訓練<br>回数</th>
-    <th>経過<br>日数</th>
-    <th>前回<br>結果</th>
-    <th>前々回<br> 結果</th>
+    <th><font size="2">訓練<br>回数</font></th>
+    <th><font size="2">経過<br>日数</font></th>
+    <th><font size="2">前回<br>結果</font></th>
+    <th><font size="2">前々回<br> 結果</font></th>
     <th>　</th>
 </tr>
 {% for key, value in object.items %}
@@ -41,8 +41,8 @@ function sendGroupForm(page) {
     <!--<td>{{key.id}}</td>-->
     <td>{{value.0.0}}</td>
     <td>{{value.0.1}}</td>
-    <td>{{value.1.0}}<br>{{value.1.1}}</td>
-    <td>{{value.2.0}}<br>{{value.2.1}}</td>
+    <td><font size="2">{{value.1.0}}<br>{{value.1.1}}</font></td>
+    <td><font size="2">{{value.2.0}}<br>{{value.2.1}}</font></td>
     <td><a href="{% url 'en_deepen' %}?id={{key.id}}"><button class="py-0">GO</button></a></td>
 </tr>
 {% endfor %}

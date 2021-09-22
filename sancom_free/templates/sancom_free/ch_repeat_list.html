@@ -24,18 +24,18 @@ function sendGroupForm(page) {
 <h5>連続再生＆復唱訓練</h5>
 <table class="table mt-3">
 <tr>
-    <th>文<br>例</th>
-    <th>訓練<br>(1st)</th>
-    <th>訓練<br>(2nd)</th>
-    <th>訓練<br>(3rd)</th>
+    <th><font size="2">文例</font></th>
+    <th><font size="2">訓練<br>(1st)</font></th>
+    <th><font size="2">訓練<br>(2nd)</font></th>
+    <th><font size="2">訓練<br>(3rd)</font></th>
     <th>　</th>
 </tr>
 {% for key, value in object.items %}
 <tr>
-    <td>{{key}}</td>
-    <td>{{value.0}}</td>
-    <td>{{value.1}}</td>
-    <td><font size="3">{{value.2}}</font></td>
+    <td><font size="2"{{key}}></font></td>
+    <td><font size="2">{{value.0}}</font></td>
+    <td><font size="2">{{value.1}}</font></td>
+    <td><font size="2">{{value.2}}</font></td>
     <td><a href="{% url 'ch_repeat' key %}"><button class="py-0">GO</button></a></td>
 </tr>
 {% endfor %}
