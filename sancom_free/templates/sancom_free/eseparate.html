@@ -4,7 +4,7 @@
 {% block title %}ビジネス５４０文例{% endblock %}
 <!--{% block header %}　{% endblock %}-->
 {% block content %}
-    <form name="shadow" method="post">
+    <form action="{% url 'eseparate' %}" name="shadow" method="post">
     {% csrf_token %}
     <p class="my-2" id="sentence2" >{{contents.english|safe}}</p>
     <div class="">
