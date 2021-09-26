@@ -1,8 +1,7 @@
-{% extends "sancom_free/common.html" %}
+{% extends "sancom_free/layout.html" %}
 {% load static %}
 
-{% block body %}
-    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'top' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">メインページへ</a>
+{% block content %}
     <form name="shadow" action="{% url 'publiccontents' %}" method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         <h6 class="pad">リストから題材を選び「読込」を押します。</h6>
@@ -67,9 +66,8 @@
         <label class="space4"><input id="end_position" type="text" placeholder="終了位置" size="7" name="end_position" value="{{end}}"></label><br>
         <label>5.　<input type="submit" value="分割ファイル作成" name="split" class="btn btn-primary my-2"> </label><br>
     </div>
-    <p>※全文シャドーイングできるまで何度も繰り返しましょう。</p>
     </form>
-
+    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'top' %}?item={{item}}&category={{category}}&japanese={{japanese}}&english={{english}}&esound={{esound}}&chinese={{chinese}}&csound={{csound}}">メインページへ</a>
     <script>
         let tmr = 1000;
         var in_play = false;
@@ -167,4 +165,4 @@
 
 </script>
 
-{% endblock body %}
+{% endblock %}

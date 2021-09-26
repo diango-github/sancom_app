@@ -21,6 +21,9 @@
     <a href="{% url 'escraper' contents.id %}"><button class="btn btn-outline-primary btn-sm mr-2">To ネット辞書</button></a>
     <p class="my-0">単語の意味や発音記号を調べます</p>
     <br>
-    <a href="{% url 'eseparate' contents.id %}"><button class="btn btn-outline-primary btn-sm mr-2">To 音声分割</button></a>
+    <a href="{% url 'eseparate' %}?id={{contents.id}}"><button class="btn btn-outline-primary btn-sm mr-2">To 音声分割</button></a>
     <p class="my-0">長文で復唱しにくい場合に利用します</p>
+    <br>
+    <a href="{% url 'business' num %}" class="btn btn-outline-primary btn-sm mr-2" >戻る</a>    
+
 {% endblock %}

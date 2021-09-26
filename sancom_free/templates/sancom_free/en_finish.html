@@ -12,7 +12,7 @@
     <label class="space2">{{form}}</label>
     <input class="btn btn-primary my-2, space2" type="submit" name="extract" value="抽出">
     </form>
-    <a class="py-0" href="{% url 'trainingbox' %}">暗唱訓練BOXへ戻る</a>
+    <!--<a class="py-0" href="{% url 'trainingbox' %}">暗唱訓練BOXへ戻る</a>-->
 {% endif %}
 
 {% if message2 %}
@@ -60,11 +60,11 @@
 <table class="table mt-6">
     {% for record in records %}
     <tr>
-        {% if record.status == 0 %}<td>登録日</td>
-        {% elif record.status == 1 %}<td>忘れていた</td>
-        {% elif record.status == 2 %}<td>忘れかけていた</td>
-        {% else %}><td>覚えていた</td>{% endif %}
-        <td>{{record.date}}</td>
+        <td><font size="2">{{record.date}}</font></td>
+        {% if record.status == 0 %}<td><font size="2">登録日</font></td>
+        {% elif record.status == 1 %}<td><font size="2">忘れていた</font></td>
+        {% elif record.status == 2 %}<td><font size="2">忘れかけていた</font></td>
+        {% else %}><td><font size="2">覚えていた</font></td>{% endif %}
     </tr>
     {% endfor %}
 </table>
@@ -79,8 +79,8 @@
 
 {% if message6 %}
 <p class="space2">{{message6}}</p>
-<br>
-<a class="py-0" href="{% url 'en_finish' %}">リストへ戻る</a>
+<br><br>
+<a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'en_finish' %}">メインへ戻る</a>
 {% endif %}
 
 {% endblock %}

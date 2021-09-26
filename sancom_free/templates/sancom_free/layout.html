@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="{% static 'sancom_free/css/custom.css' %}" rel="stylesheet" >
 </head>
@@ -14,12 +15,6 @@
         <li class="nav-item">
             <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'top' %}">会員ページ</a>
         </li>
-        <li class="nav-item">
-            <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'business' %}">文例トップページ</a>
-        </li>
-        <li class="nav-item">
-            <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'trainingbox' %}">暗唱訓練BOX</a>
-        </li>        
     </ul>
     </nav>
     <div class="content">{% block content %}{% endblock %}</div>

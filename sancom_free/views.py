@@ -159,8 +159,13 @@ def business (request, num=1):
 
 def econtents (request, id):
     contents = Dictionary.objects.get(id=id)
+    if int(id)%10 == 0:
+        page = int(int(id)/10)
+    else:
+        page = int(int(id)/10) + 1
     params = {
         'contents': contents,
+        'num': page,
     }
     return render(request, 'sancom_free/econtents.html', params)
 
@@ -264,10 +269,65 @@ def eseparate (request, id):
             params['contents'] = contents              
         return render(request, 'sancom_free/eseparate.html', params) 
 
+class Eseparate(TemplateView):
+    def __init__(self):
+        self.params = {
+            'contents':'',
+            'start':'',
+            'length':'',
+            'end':'',
+            'finish_comment':'(未作成)',
+        }
+
+    def get(self, request):
+        global id
+        id = request.GET['id']
+        contents = Dictionary.objects.get(id=id)
+        self.params['contents'] = contents 
+        return render(request, 'sancom_free/eseparate.html', self.params)
+
+    def post(self, request):
+        if 'split' in request.POST:
+            contents = Dictionary.objects.get(id=id)
+            start_position = request.POST['start_position']
+            end_position = request.POST['end_position']
+            duration = request.POST['duration']
+            sound = BASE_DIR + '/static/' + contents.esound
+            in_wav = wave.Wave_read(sound)
+            nchannels, sampwidth, framerate, nframes, comptype, compname = in_wav.getparams()
+            st = float(start_position)/float(duration)
+            en = float(end_position)/float(duration)
+            start = int(st*float(nframes))  #開始位置の処理
+            end   = int(en*float(nframes))  #終了位置の処理
+            data = in_wav.readframes(nframes)
+            tmp_data = np.frombuffer(data, dtype='int16')
+            x = tmp_data[start*nchannels:end*nchannels] #切り出し
+            #出力ファイル書き込み
+            tag = str(request.user.id)
+            newsound = BASE_DIR + '/static/sancom_free/sound/splite/sound_' + tag + '.wav'
+            out_wav = wave.Wave_write(newsound)
+            nframes = x.size//nchannels
+            out_wav.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
+            out_wav.writeframes(x)
+            in_wav.close()
+            out_wav.close()
+            self.params['contents'] = contents
+            self.params['sound_splited'] = 'sancom_free/sound/splite/sound_' + tag +'.wav'
+            self.params['start'] = start_position
+            self.params['length'] = duration
+            self.params['end'] = end_position
+            self.params['finish_comment'] = "(再生可能)"
+            return render(request, 'sancom_free/eseparate.html', self.params) 
+
 def ccontents (request, id):
     contents = Dictionary.objects.get(id=id)
+    if int(id)%10 == 0:
+        page = int(int(id)/10)
+    else:
+        page = int(int(id)/10) + 1
     params = {
         'contents': contents,
+        'num': page,
     }
     return render(request, 'sancom_free/ccontents.html', params)
 
@@ -318,8 +378,11 @@ def cscraper (request, id):
                     return render(request, 'sancom_free/cscraper.html', params)
                 params['contents'] = contents
                 params['word'] = word
-                params['pronWeblio'] = pronouciation
-                params['meaningWeblio'] = meaning
+                pron = pronouciation.split()
+                params['pronWeblio'] = pron[1]
+                mean = meaning.strip("　※意味はWEBより自動取得されたもので、正確でない場合があります。")
+                mean = mean.strip("主な意味：　")
+                params['meaningWeblio'] = mean
         #GETアクセス時の処理
         else:
             contents = Dictionary.objects.get(id=id)
@@ -370,6 +433,56 @@ def cseparate (request, id):
             contents = Dictionary.objects.get(id=id)
             params['contents'] = contents              
         return render(request, 'sancom_free/cseparate.html', params) 
+
+class Cseparate(TemplateView):
+    def __init__(self):
+        self.params = {
+            'contents':'',
+            'start':'',
+            'length':'',
+            'end':'',
+            'finish_comment':'(未作成)',
+        }
+
+    def get(self, request):
+        global id
+        id = request.GET['id']
+        contents = Dictionary.objects.get(id=id)
+        self.params['contents'] = contents 
+        return render(request, 'sancom_free/cseparate.html', self.params)
+
+    def post(self, request):
+        if 'split' in request.POST:
+            contents = Dictionary.objects.get(id=id)
+            start_position = request.POST['start_position']
+            end_position = request.POST['end_position']
+            duration = request.POST['duration']
+            sound = BASE_DIR + '/static/' + contents.csound
+            in_wav = wave.Wave_read(sound)
+            nchannels, sampwidth, framerate, nframes, comptype, compname = in_wav.getparams()
+            st = float(start_position)/float(duration)
+            en = float(end_position)/float(duration)
+            start = int(st*float(nframes))  #開始位置の処理
+            end   = int(en*float(nframes))  #終了位置の処理
+            data = in_wav.readframes(nframes)
+            tmp_data = np.frombuffer(data, dtype='int16')
+            x = tmp_data[start*nchannels:end*nchannels] #切り出し
+            #出力ファイル書き込み
+            tag = str(request.user.id)
+            newsound = BASE_DIR + '/static/sancom_free/sound/splite/sound_' + tag + '.wav'
+            out_wav = wave.Wave_write(newsound)
+            nframes = x.size//nchannels
+            out_wav.setparams((nchannels, sampwidth, framerate, nframes, comptype, compname))
+            out_wav.writeframes(x)
+            in_wav.close()
+            out_wav.close()
+            self.params['contents'] = contents
+            self.params['sound_splited'] = 'sancom_free/sound/splite/sound_' + tag +'.wav'
+            self.params['start'] = start_position
+            self.params['length'] = duration
+            self.params['end'] = end_position
+            self.params['finish_comment'] = "(再生可能)"
+            return render(request, 'sancom_free/cseparate.html', self.params) 
 
 def trainingbox(request):
     params = {
@@ -427,7 +540,7 @@ def trainingbox(request):
     for key in e1list_all:
         if len(e1object[key]) <= 2:
             e1list_target1.append(key)
-        if len(e1object[key]) == 3:
+        if len(e1object[key]) >= 3:
             e1list_finish.append(key)
     for item in e3sentences:
         key = item.dictionary.item
@@ -466,7 +579,7 @@ def trainingbox(request):
     for key in c1list_all:
         if len(c1object[key]) <= 2:
             c1list_target1.append(key)
-        if len(c1object[key]) == 3:
+        if len(c1object[key]) >= 3:
             c1list_finish.append(key)
     for item in c3sentences:
         key = item.dictionary.item
@@ -525,7 +638,7 @@ def en_repeat_list(request):
         else:
             object[key].append(day)
     for key in elist:
-        if len(object[key]) == 3:
+        if len(object[key]) >= 3:
             object.pop(key)
     dlist = list(object.keys())
     for key in dlist:
@@ -550,8 +663,8 @@ def en_repeat (request, id):
             e_repeat= Erepeat(owner=request.user, dictionary=contents)
             e_repeat.save()
             cnt = Erepeat.objects.filter(owner=request.user).filter(dictionary=contents).count()
-            if cnt == 3:
-                params['message'] = '３回目が終了して、３文訓練に登録されました)'
+            if cnt >= 3:
+                params['message'] = '３回目が終了し、次の３文訓練に登録されました)'
             else:
                 params['message'] = '２回目が終了しました'
             params['contents'] = contents
@@ -575,7 +688,7 @@ def ch_repeat_list(request):
         else:
             object[key].append(day)
     for key in elist:
-        if len(object[key]) == 3:
+        if len(object[key]) >= 3:
             object.pop(key)
     dlist = list(object.keys())
     for key in dlist:
@@ -600,8 +713,8 @@ def ch_repeat (request, id):
             c_repeat= Crepeat(owner=request.user, dictionary=contents)
             c_repeat.save()
             cnt = Crepeat.objects.filter(owner=request.user).filter(dictionary=contents).count()
-            if cnt == 3:
-                params['message'] = '３回目が終了して、３文訓練に登録されました)'
+            if cnt >= 3:
+                params['message'] = '３回目が終了し、次の３文訓練に登録されました)'
             else:
                 params['message'] = '２回目が終了しました'
             params['contents'] = contents
@@ -659,6 +772,8 @@ class en_3sentences(TemplateView):
         elif 'next' in request.POST:
             count = count + 1
             list = en_list2
+            if len(list) == 0:
+                return redirect('en_3sentences')
             list.remove(dictionary_choiced)
             dictionary_choiced = random.choice(list)
             self.params['dictionary_choiced'] = dictionary_choiced
@@ -732,6 +847,8 @@ class ch_3sentences(TemplateView):
         elif 'next' in request.POST:
             count = count + 1
             list = en_list2
+            if len(list) == 0:
+                return redirect('ch_3sentences')
             list.remove(dictionary_choiced)
             dictionary_choiced = random.choice(list)
             self.params['dictionary_choiced'] = dictionary_choiced
@@ -885,16 +1002,20 @@ class en_deepen(TemplateView):
             self.params['message3'] = "message3"
             self.params['message4'] = ""
         elif 'register' in request.POST:
-            st = request.POST['choice']
-            e_deepen = Edeepen(owner=request.user, dictionary=dictionary_choiced, status=st)
-            e_deepen.save()
+            last_one = Edeepen.objects.filter(owner=request.user).filter(dictionary=dictionary_choiced).order_by('date').reverse().first()
+            if last_one.date == datetime.date.today():
+                self.params['message4'] = "本日追加済みです。翌日以降に実施してください"  
+            else:              
+                st = request.POST['choice']
+                e_deepen = Edeepen(owner=request.user, dictionary=dictionary_choiced, status=st)
+                e_deepen.save()
+                self.params['message4'] = "訓練履歴を追加しました"                  
             records = Edeepen.objects.filter(owner=request.user).filter(dictionary=dictionary_choiced)
             self.params['dictionary_choiced'] = dictionary_choiced
             self.params['records'] = records
             self.params['message1'] = ""
             self.params['message2'] = ""
             self.params['message3'] = ""
-            self.params['message4'] = "訓練履歴を追加しました"
         elif 'to_finish' in request.POST:
             e_finish = Efinish(owner=request.user, dictionary=dictionary_choiced, status=0)
             e_finish.save()
@@ -995,6 +1116,8 @@ class en_finish(TemplateView):
             self.params['message4'] = ""
             self.params['message5'] = "確認履歴を追加しました"
         elif 'next' in request.POST:
+            if len(list_choiced) == 0:
+                return redirect('en_finish')
             list_choiced.remove(dictionary_choiced)
             if len(list_choiced) == 0:
                 self.params['message1'] = ""
@@ -1141,16 +1264,20 @@ class ch_deepen(TemplateView):
             self.params['message3'] = "message3"
             self.params['message4'] = ""
         elif 'register' in request.POST:
-            st = request.POST['choice']
-            c_deepen = Cdeepen(owner=request.user, dictionary=dictionary_choiced, status=st)
-            c_deepen.save()
+            last_one = Cdeepen.objects.filter(owner=request.user).filter(dictionary=dictionary_choiced).order_by('date').reverse().first()
+            if last_one.date == datetime.date.today():
+                self.params['message4'] = "本日追加済みです。翌日以降に実施してください"  
+            else:              
+                st = request.POST['choice']
+                c_deepen = Cdeepen(owner=request.user, dictionary=dictionary_choiced, status=st)
+                c_deepen.save()
+                self.params['message4'] = "訓練履歴を追加しました"  
             records = Cdeepen.objects.filter(owner=request.user).filter(dictionary=dictionary_choiced)
             self.params['dictionary_choiced'] = dictionary_choiced
             self.params['records'] = records
             self.params['message1'] = ""
             self.params['message2'] = ""
             self.params['message3'] = ""
-            self.params['message4'] = "訓練履歴を追加しました"
         elif 'to_finish' in request.POST:
             c_finish = Cfinish(owner=request.user, dictionary=dictionary_choiced, status=0)
             c_finish.save()
@@ -1251,6 +1378,8 @@ class ch_finish(TemplateView):
             self.params['message4'] = ""
             self.params['message5'] = "確認履歴を追加しました"
         elif 'next' in request.POST:
+            if len(list_choiced) == 0:
+                return redirect('ch_finish')
             list_choiced.remove(dictionary_choiced)
             if len(list_choiced) == 0:
                 self.params['message1'] = ""
@@ -1310,7 +1439,7 @@ def get_sentences_list(owner, language):
     for key in e1list_all:
         if len(e1object[key]) <= 2:
             e1list_target1.append(key)
-        if len(e1object[key]) == 3:
+        if len(e1object[key]) >= 3:
             e1list_finish.append(key)
     for item in sentences:
         key = item.dictionary.id

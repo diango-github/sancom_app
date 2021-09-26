@@ -62,25 +62,26 @@
     <table class="table mt-6">
         {% for record in records %}
         <tr>
-            <td>{{record.date}}</td>
-            {% if record.status == 0 %}<td>登録日</td>
-            {% elif record.status == 1 %}<td>レベル１：思い出せなかった</td>
-            {% elif record.status == 2 %}<td>レベル２：間違えた</td>
-            {% elif record.status == 3 %}<td>レベル３：たどたとしく言えた</td>
-            {% elif record.status == 4 %}<td>レベル４：直ぐに言えたが発音は要改善</td>
-            {% else %}><td>レベル５：自分なりのベストな発音で言えた</td>{% endif %}
+            <td><font size="2">{{record.date}}</font></td>
+            {% if record.status == 0 %}<td><font size="2">登録日</font></td>
+            {% elif record.status == 1 %}<td><font size="2">レベル１：思い出せなかった</font></td>
+            {% elif record.status == 2 %}<td><font size="2">レベル２：間違えた</font></td>
+            {% elif record.status == 3 %}<td><font size="2">レベル３：たどたとしく言えた</font></td>
+            {% elif record.status == 4 %}<td><font size="2">レベル４：直ぐに言えたが発音は要改善</font></td>
+            {% else %}><td><font size="2">レベル５：自分なりのベストな発音で言えた</font></td>{% endif %}
         </tr>
         {% endfor %}
     </table>
     {{message4}}
-    <br>
-    <label class="2">結果が安定していれば「終了」に移行できます</label>
-    <input class="btn btn-primary my-2, space2" type="submit" name="to_finish" value="終了" >
-    </form>
     <br><br>
-    <a class="py-0" href="{% url 'crepeat' dictionary_choiced.id %}">もう一度 連続再生＆復唱訓練を行う</a
+    <a class="btn btn-outline-primary btn-sm mr-2" href="{% url 'ch_deepen_list' %}">リストへ戻る</a>
+    <br><br>
+    <p class="">文例トップより適時復習を行ってください</p>
+    <label class="">結果が安定していれば「終了」に移行できます</label>
     <br>
-    <a class="py-0, space4" href="{% url 'ch_deepen_list' %}">メインリストへ戻る</a>
+    <input class="btn btn-primary my-2, space2" type="submit" name="to_finish" value="終了へ移行" >
+    </form>
+
 {% endif %}
 
 {% if message5 %}

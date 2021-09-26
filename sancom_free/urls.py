@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
-from .views import Lan_appView2, business, econtents, erepeat, escraper, eseparate, ccontents, crepeat, cscraper, cseparate, trainingbox, en_repeat_list, ch_repeat_list, en_repeat, ch_repeat, en_3sentences, ch_3sentences, en_deepen_list, en_deepen, ch_deepen_list, ch_deepen, en_finish, ch_finish
+from .views import Lan_appView2, business, econtents, erepeat, escraper, Eseparate, ccontents, crepeat, cscraper, Cseparate, trainingbox, en_repeat_list, ch_repeat_list, en_repeat, ch_repeat, en_3sentences, ch_3sentences, en_deepen_list, en_deepen, ch_deepen_list, ch_deepen, en_finish, ch_finish
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,11 +11,13 @@ urlpatterns = [
     path('econtents/<int:id>', econtents, name='econtents'),
     path('erepeat/<int:id>', erepeat, name='erepeat'),
     path('escraper/<int:id>', escraper, name='escraper'),
-    path('eseparate/<int:id>', eseparate, name='eseparate'),
+    #path('eseparate/<int:id>', eseparate, name='eseparate'),
+    path('eseparate', Eseparate.as_view(), name='eseparate'),
     path('ccontents/<int:id>', ccontents, name='ccontents'),
     path('crepeat/<int:id>', crepeat, name='crepeat'),
     path('cscraper/<int:id>', cscraper, name='cscraper'),
-    path('cseparate/<int:id>', cseparate, name='cseparate'),
+    #path('cseparate/<int:id>', cseparate, name='cseparate'),
+    path('cseparate', Cseparate.as_view(), name='cseparate'),
     path('trainingbox', trainingbox, name='trainingbox'),
     path('en_repeat_list', en_repeat_list, name='en_repeat_list'),
     path('ch_repeat_list', ch_repeat_list, name='ch_repeat_list'),
