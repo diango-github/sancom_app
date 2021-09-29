@@ -72,21 +72,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 #自作
 class File(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='login_user')
-    filename1 = models.CharField(max_length=20)
-    filename2 = models.CharField(max_length=20)
-    filename3 = models.CharField(max_length=20)    
+    filename1 = models.CharField(max_length=25, null=True, blank=True)
 
     def __str__(self):
         return '<' + self.filename1 + '(' + str(self.owner) + ')>'
 
 class Dictionary(models.Model):
-    item = models.CharField(max_length=20)
-    category = models.CharField(max_length=20)
-    japanese = models.CharField(max_length=50)
-    english = models.CharField(max_length=50)
-    esound = models.CharField(max_length=20)
-    chinese = models.CharField(max_length=50)
-    csound = models.CharField(max_length=20)
+    item = models.CharField(max_length=20, null=True, blank=True)
+    category = models.CharField(max_length=20, null=True, blank=True)
+    japanese = models.CharField(max_length=50, null=True, blank=True)
+    english = models.CharField(max_length=50, null=True, blank=True)
+    esound = models.CharField(max_length=20, null=True, blank=True)
+    chinese = models.CharField(max_length=50, null=True, blank=True)
+    csound = models.CharField(max_length=20, null=True, blank=True)
  
     def __str__(self):
         return '<' + self.item + '>'
