@@ -79,11 +79,11 @@ class File(models.Model):
 
 class Dictionary(models.Model):
     item = models.CharField(max_length=20, null=True, blank=True)
-    category = models.CharField(max_length=20, null=True, blank=True)
-    japanese = models.CharField(max_length=50, null=True, blank=True)
-    english = models.CharField(max_length=50, null=True, blank=True)
+    category = models.CharField(max_length=40, null=True, blank=True)
+    japanese = models.CharField(max_length=200, null=True, blank=True)
+    english = models.CharField(max_length=200, null=True, blank=True)
     esound = models.CharField(max_length=20, null=True, blank=True)
-    chinese = models.CharField(max_length=50, null=True, blank=True)
+    chinese = models.CharField(max_length=200, null=True, blank=True)
     csound = models.CharField(max_length=20, null=True, blank=True)
  
     def __str__(self):
