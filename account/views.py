@@ -24,24 +24,25 @@ class Top(generic.TemplateView):
             id = str(self.request.user.id)
             user_name= self.request.user.get_username()
 
-            file = File()
-            file.owner = User.objects.filter(email=user_name).first()
-            file.filename1 = 'SancomContents_' + id + '.xlsx'
-            wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
-            wb.save(BASE_DIR + '/static/' + file.filename1)
-            file.save()
+            #file = File()
+            #file.owner = User.objects.filter(email=user_name).first()
+            #file.filename1 = 'SancomContents_' + id + '.xlsx'
+            #wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
+            #wb.save(BASE_DIR + '/static/' + file.filename1)
+            #file.save()
 
-            if user_name == "kexiaoze53@gmail.com":
+            if user_name == "oz5java@gyahoo.co.jp":
                 filename = 'SancomContents.xlsx'
                 sheet = 'sheet1'
                 excel = Excel_link(filename, sheet)
                 excel_list = excel.getlist()
                 verb_dic = excel_list[0]
                 verb_list = excel_list[1]
+                
                 #dictionary = Dictionary.objects.all()
                 #dictionary.delete()
                 #for i in range(len(verb_list)):
-                    #dictionary=Dictionary()
+                    #dictionary = Dictionary.objects.get(id=541+i)
                     #dictionary.item=verb_list[i]
                     #dictionary.category=verb_dic[verb_list[i]]["category"]
                     #dictionary.japanese=verb_dic[verb_list[i]]["japanese"]
