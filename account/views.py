@@ -31,9 +31,10 @@ class Top(generic.TemplateView):
             #wb.save(BASE_DIR + '/static/' + file.filename1)
             #file.save()
 
-            if user_name == "oz5java@gyahoo.co.jp":
+            if user_name == "oz5java@yahoo.co.jp":
                 filename = 'SancomContents.xlsx'
-                sheet = 'sheet1'
+                sheet = 'sheet1'  #For update
+                #sheet = 'sheet3' #For insert
                 excel = Excel_link(filename, sheet)
                 excel_list = excel.getlist()
                 verb_dic = excel_list[0]
@@ -43,6 +44,7 @@ class Top(generic.TemplateView):
                 #dictionary.delete()
 
                 #for i in range(len(verb_list)):
+                    #For update
                     #dictionary = Dictionary.objects.get(id=i+1)
                     #dictionary.item=verb_list[i]
                     #dictionary.category=verb_dic[verb_list[i]]["category"]
@@ -53,8 +55,8 @@ class Top(generic.TemplateView):
                     #dictionary.csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"]
                     #dictionary.save()
 
+                    #For insert
                     #dictionary = Dictionary.objects.create(item=verb_list[i], category= verb_dic[verb_list[i]]["category"], japanese= verb_dic[verb_list[i]]["japanese"], english= verb_dic[verb_list[i]]["english"], esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"], chinese= verb_dic[verb_list[i]]["chinese"], csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"])
-
                     #dictionary = Dictionary(item=verb_list[i], category= verb_dic[verb_list[i]]["category"], japanese= verb_dic[verb_list[i]]["japanese"], english= verb_dic[verb_list[i]]["english"], esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"], chinese= verb_dic[verb_list[i]]["chinese"], csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"])
                     #dictionary.save()
 

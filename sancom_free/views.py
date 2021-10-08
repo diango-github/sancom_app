@@ -149,7 +149,7 @@ class Lan_appView2(TemplateView):
             return render(request, 'sancom_free/publiccontents.html', self.params) 
 
 def business (request, num=1):
-    dictionary = Dictionary.objects.all()
+    dictionary = Dictionary.objects.all().order_by('id')
     page = Paginator(dictionary, 10)
     params = {
         'login_user': request.user,
