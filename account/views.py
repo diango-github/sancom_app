@@ -41,16 +41,16 @@ class Top(generic.TemplateView):
                 
                 #dictionary = Dictionary.objects.all()
                 #dictionary.delete()
-                #for i in range(len(verb_list)):
-                    #dictionary = Dictionary.objects.get(id=541+i)
-                    #dictionary.item=verb_list[i]
-                    #dictionary.category=verb_dic[verb_list[i]]["category"]
-                    #dictionary.japanese=verb_dic[verb_list[i]]["japanese"]
-                    #dictionary.english= verb_dic[verb_list[i]]["english"]
-                    #dictionary.esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"]
-                    #dictionary.chinese= verb_dic[verb_list[i]]["chinese"]
-                    #dictionary.csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"]
-                    #dictionary.save()
+                for i in range(len(verb_list)):
+                    dictionary = Dictionary.objects.get(id=541+i)
+                    dictionary.item=verb_list[i]
+                    dictionary.category=verb_dic[verb_list[i]]["category"]
+                    dictionary.japanese=verb_dic[verb_list[i]]["japanese"]
+                    dictionary.english= verb_dic[verb_list[i]]["english"]
+                    dictionary.esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"]
+                    dictionary.chinese= verb_dic[verb_list[i]]["chinese"]
+                    dictionary.csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"]
+                    dictionary.save()
                     #dictionary = Dictionary.objects.create(item=verb_list[i], category= verb_dic[verb_list[i]]["category"], japanese= verb_dic[verb_list[i]]["japanese"], english= verb_dic[verb_list[i]]["english"], esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"], chinese= verb_dic[verb_list[i]]["chinese"], csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"])
                     #dictionary = Dictionary(item=verb_list[i], category= verb_dic[verb_list[i]]["category"], japanese= verb_dic[verb_list[i]]["japanese"], english= verb_dic[verb_list[i]]["english"], esound= "sancom_free/sound/" + verb_dic[verb_list[i]]["esound"], chinese= verb_dic[verb_list[i]]["chinese"], csound= "sancom_free/sound/" + verb_dic[verb_list[i]]["csound"])
                     #dictionary.save()
