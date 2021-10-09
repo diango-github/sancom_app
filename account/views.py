@@ -24,12 +24,12 @@ class Top(generic.TemplateView):
             id = str(self.request.user.id)
             user_name= self.request.user.get_username()
 
-            #file = File()
-            #file.owner = User.objects.filter(email=user_name).first()
-            #file.filename1 = 'SancomContents_' + id + '.xlsx'
-            #wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
-            #wb.save(BASE_DIR + '/static/' + file.filename1)
-            #file.save()
+            file = File()
+            file.owner = User.objects.filter(email=user_name).first()
+            file.filename1 = 'SancomContents_' + id + '.xlsx'
+            wb=openpyxl.load_workbook(BASE_DIR + '/static/SancomContents.xlsx')
+            wb.save(BASE_DIR + '/static/' + file.filename1)
+            file.save()
 
             if user_name == "oz5java@yahoo.co.jp":
                 filename = 'SancomContents.xlsx'
