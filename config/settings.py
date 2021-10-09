@@ -67,9 +67,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', #sqlite3から変更
-        #'NAME': 'sancom_db',
-        #'USER': 'db_ozawa',
-        #'PASSWORD': 'xiaozekedian',
+        #'NAME': 'sancom1',
+        #'USER': 'ozawa1',
+        #'PASSWORD': 'kedianxiaoze1',
         'NAME': 'sancom',
         'USER': 'ozawa',
         'PASSWORD': 'kedianxiaoze',
