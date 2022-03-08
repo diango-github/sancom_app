@@ -109,10 +109,10 @@ class DeepenRadio(forms.Form):
 
 class DeepenRadio2(forms.Form):
     data = (
-        (5, 'レベル５：自分なりのベストな発音で言えた'),
-        (4, 'レベル４：直ぐに言えたが発音は要改善'),
+        (5, 'レベル５：ネイティブの速さで言えた'),
+        (4, 'レベル４：自分なりにすらすら言えた'),
         (3, 'レベル３：たどたどしく言えた'),
-        (2, 'レベル２：間違えた'),
+        (2, 'レベル２：一部を間違えた'),
         (1, 'レベル１：思い出せなかった')
     )
     choice = forms.ChoiceField(label='', initial='1', choices=data, widget=forms.RadioSelect())

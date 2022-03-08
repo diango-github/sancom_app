@@ -20,7 +20,7 @@
             {% elif record.status == 2 %}<td><font size="2">レベル２：一部を間違えた</font></td>
             {% elif record.status == 3 %}<td><font size="2">レベル３：たどたとしく言えた</font></td>
             {% elif record.status == 4 %}<td><font size="2">レベル４：自分なりにすらすら言えた</font></td>
-            {% else %}><td><font size="2">レベル５：ネイティブに近づけて言えた</font></td>{% endif %}
+            {% else %}><td><font size="2">レベル５：ネイティブの速さで言えた</font></td>{% endif %}
         </tr>
         {% endfor %}
     </table>
@@ -45,7 +45,7 @@
     <label class="space2" >　{{dictionary_choiced.chinese}}</label>
     <br>
     <audio class="space4" id="bgm1" controls controlslist="nodownload" ><source src="{% static dictionary_choiced.csound %}" ></audio>
-    <p class="space2">3. 採点結果を選択して訓練履歴追加ボタンを押してください</p>
+    <p class="space2">3. 結果を選択し訓練履歴追加を押してください</p>
     <label class="space2">{{form}}</label>
     <input class="btn btn-primary my-2, space4" type="submit" name="register" value="訓練履歴追加" >
     <br><br>
@@ -68,7 +68,7 @@
             {% elif record.status == 2 %}<td><font size="2">レベル２：一部を間違えた</font></td>
             {% elif record.status == 3 %}<td><font size="2">レベル３：たどたとしく言えた</font></td>
             {% elif record.status == 4 %}<td><font size="2">レベル４：自分なりにすらすら言えた</font></td>
-            {% else %}><td><font size="2">レベル５：ネイティブに近づけて言えた</font></td>{% endif %}
+            {% else %}><td><font size="2">レベル５：ネイティブの速さで言えた</font></td>{% endif %}
         </tr>
         {% endfor %}
     </table>
