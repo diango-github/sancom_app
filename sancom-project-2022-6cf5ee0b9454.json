@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sancom-project-2022",
+  "private_key_id": "6cf5ee0b94542334eff285286e7a6b8d083763fa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCEvoJmmnXVPtcM\nksgXUiA+5Hr7vPwP8mqqd1tiSIjv0Su7g7o1z5LieBNgvnU9y8aWUTsNziHqNqMZ\nVt2XtdSuP0X1yfUNIDaBqTje/RI5fvC6LPLyG/08/xNvqbkaNbD9mVwKXrNFl9fo\n/o6/hu7JznfnQOez1ShnT6ROnS8y1wcOOHXnkXt7ZxhOiO/1UnL9p+H+0iXcTK+p\ndYbxI8K5KMQo4a/G3XgTDp672cJ4iu9kzGeFhQQrzPlY73LbesMmRTXj/L4B2Jf4\n+eAzCA6xM/pbTIjwyZcTQrTW7lySXHwx1Iccs4ddPNgfKrYFVVeUSBptHuM/J9hG\nE9NAFYPnAgMBAAECggEAHRU6L62erGJQrlYIVaeuHelkEnxkwz+q4/8ze9SFf/lV\negdRyFFajpidMkB4Ilpff3Z7mDo1zwE6eaZA9WimmKiPNNsS/9Wza3P+XEiY8hTg\nPAH2FlpQgMkn4nqObfIefWlYs4LtBw3OBaOj9c1jyr4cIgPj39APQpc92eVxPlNy\nVph1K8BxnJ15vT+77ggdjOcUkCGv1ZbpCvISN/83EhrbeMrcuq1Hhz2o4fg8DbfC\nm4A3OKZVdT/KwpQa7Rt1LAgymn9OlpsaokCnmaF+7ghXxz2UoARVeKtyW1CdWARP\nSGRcsKKYcDvilSnlUj03RViS3VFm6OF6nck6iH5H8QKBgQC5XjWBaWnah+FMfW3U\nrhWhCxqYexmEjUrU3TkIX2pQ0v7M9Puva/OBnrk0eQ7SsIOppfpr6eRg5M2puNoF\n/PcLGxXl0vnuSXDUCvwhzvZCba1eYFJRzhg2+oggXogLRXzf7K79RgkgVulVRhyH\nQ6Cl9z5HvukiRo2ThWSQtgF6dwKBgQC3Uxbv0VyHv6o7jpzNNWPIxierpHgLafgw\nXM1RWCe8Ik2PaFiLYJekTmPNDxPAIj9NvvveVbfnJsaK9oxxmVt28NFcDZbhjRFw\n8kYh+sA/Cdo/z6DZXsci1eXOaREuNczAMThPoqKS+gSxEbCrQVphSHWorUvChGct\n3T2jTZ0uEQKBgBGOYaTrFfJzkhwLeR5+il/hTFiKuCT8uMymUyN+3fPft/Azd67q\nm3p4TPQyTvwXabDknm4gDdg7c1sSvdt5VPCBVTaaH7+4xu3eSHjvQBWUi6n3l3RV\n/6cdXU0rhtkCcMxIf15PhsfAU4MXC9anygxN+WEULMJpSjlhld+6zTMLAoGBAKl7\nG31ipJSrUQn2cmgUr8dxykMYrhJ/SYAMi5RkV3fKjsHByfowtoCkKAfvpGbAQp3x\nrpCB1p7QbkUSYgyzpqdzQ1pDBfZHoJQ2pzfKxeiBh0/u99l9kcRW0zncUJHUExKr\nbk/RH1OZ6LR6kkYBCTle78edTqjqFymDm/RZULLBAoGACDj87JBegCeNnDLjKAaF\n1WPM6ipBBtZAssmH+cF9dFwkT1EtOgsFBj1heYQbp3ujbhb6TBY987on/Mt1LtaD\n0gN+zRAPU0sGhLUux/QTjXdSk/JtfrTnIf+FFuIu6XjI60cG8kiryeFfqM5dmXcK\nr2mBWcQhDNGzonJ4UlS/+HY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sancom@sancom-project-2022.iam.gserviceaccount.com",
+  "client_id": "110408055163673151495",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sancom%40sancom-project-2022.iam.gserviceaccount.com"
+}

@@ -62,13 +62,13 @@
     <table class="table mt-6">
         {% for record in records %}
         <tr>
-            <td><font size="2">{{record.date}}</font></td>
+            <td><font size="1">{{record.date}}</font></td>
             {% if record.status == 0 %}<td><font size="2">登録日</font></td>
             {% elif record.status == 1 %}<td><font size="2">レベル１：思い出せなかった</font></td>
-            {% elif record.status == 2 %}<td><font size="2">レベル２：間違えた</font></td>
+            {% elif record.status == 2 %}<td><font size="2">レベル２：一部を間違えた</font></td>
             {% elif record.status == 3 %}<td><font size="2">レベル３：たどたとしく言えた</font></td>
-            {% elif record.status == 4 %}<td><font size="2">レベル４：直ぐに言えたが発音は要改善</font></td>
-            {% else %}><td><font size="2">レベル５：自分なりのベストな発音で言えた</font></td>{% endif %}
+            {% elif record.status == 4 %}<td><font size="2">レベル４：自分なりにすらすら言えた</font></td>
+            {% else %}><td><font size="2">レベル５：ネイティブに近づけて言えた</font></td>{% endif %}
         </tr>
         {% endfor %}
     </table>

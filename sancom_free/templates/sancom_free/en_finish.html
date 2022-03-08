@@ -60,7 +60,7 @@
 <table class="table mt-6">
     {% for record in records %}
     <tr>
-        <td><font size="2">{{record.date}}</font></td>
+        <td><font size="1">{{record.date}}</font></td>
         {% if record.status == 0 %}<td><font size="2">登録日</font></td>
         {% elif record.status == 1 %}<td><font size="2">忘れていた</font></td>
         {% elif record.status == 2 %}<td><font size="2">忘れかけていた</font></td>
