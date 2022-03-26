@@ -20,6 +20,8 @@ from account.views import Top
 from .views import emailfunc
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve  #追加
+from django.conf.urls import url  #追加
 
 urlpatterns = [
     path('', Top.as_view(), name='top'),
@@ -27,8 +29,11 @@ urlpatterns = [
     path('accounts/', include('account.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('sancom_free/', include('sancom_free.urls')),
+    path('sns/', include('sns.urls')),
     path('email/', emailfunc),
+    #url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  #追加
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

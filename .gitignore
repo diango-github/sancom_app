@@ -7,3 +7,4 @@ _pycache_
 db.sqlite3
 local_settings.py
 account/migrations
+token.json

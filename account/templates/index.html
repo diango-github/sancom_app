@@ -5,36 +5,35 @@
     {% if user.is_authenticated %}
         <p>こんにちは {{visiter}} さん</p>
         <br>
-        <h5>フリーコンテンツ</h5>
+        <h5>SANCOMコンテンツ</h5>
         <ul>
-            <li class="h6 mb-3"><a href="{% url 'business' %}">英中ビジネス５４０フレーズ</a></li>
-            <li class="h6 mb-3"><a href="{% url 'publiccontents' %}">一般公開コンテンツ</a></li>
+            <li class="h6 mb-3"><a href="{% url 'business' %}">英中ビジネスフレーズ５４０</a></li>
+            <!--<li class="h6 mb-3"><a href="{% url 'publiccontents' %}">一般公開コンテンツ</a></li>-->
         </ul>
-        <h5>有料コンテンツ</h5>
+        <h5>SANCOMオンラインレッスン</h5>
         <ul>
-            <li class="h6 mb-3">２０２２年中旬以降に公開予定</li>
+            <li class="h6 mb-3"><a href="">ビデオチャット(画面共有/ファイル共有)</a></li>
         </ul>
-        <h5>オンライン発音コーチング</h5>
-            <ul>
-                <li class="h6 mb-3"><a href="">年内に開始予定</a></li>
-            </ul>
-        <p>　</p>        
+        <h5>SANCOMコニュニティー</h5>
+        <ul>
+            <li class="h6 mb-3"><a href="">ビデオチャット(多国語通話)</a></li>
+            <li class="h6 mb-3"><a href="{% url 'index' %}">SANCOM SNS</a></li>
+        </ul>
+   
     {% else %}
     <br>
-    <h5 class="h6 mb-3" >会員の方</h4>
+    <h5 class="h6 mb-3" >会員エリアメニュー</h4>
     <ul>
-        <li class="h6 mb-3">「ログイン」よりお進みください。</li>
+        <li class="h6 mb-3">英中ビジネスフレーズ５４０</li>
+        <li class="h6 mb-3">SANCOM ビデオチャット</li>
+        <li class="h6 mb-3">SANCOM SNS</li>
     </ul>
-    <h5 class="h6 mb-3" >これから入会される方</h4>
-    <ul>
-        <li class="h6 mb-3">「入会」にてお手続きください。</li>
-        <li class="h6 mb-3">Eメールアドレスで登録します。</li>
-        <li class="h6 mb-3">費用は発生しません。</li>
-        <li class="h6 mb-3">SANCOM独自コンテンツをご利用いただけます。</li>
-    </ul>
-    <p>2021/11/09 にデータベースを更新しました。それ以前に入会された会員様はお手数ですが再度入会手続きをお願いします。</p>
-    <br>
-    <p><a href="https://san-com.jp">SANCOMトップページ</a></p>    
+    <h5 class="h6 mb-3" >プロバイダー一覧</h4>
+        <ul>
+            <li class="h6 mb-3">準備中</li>
+        </ul>
+     <br>
+    <p><a href="https://san-com.jp">SANCOMホーム</a></p>    
     {% endif %}
 
     {% endblock %}

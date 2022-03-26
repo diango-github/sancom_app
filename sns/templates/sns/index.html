@@ -1,0 +1,118 @@
+{% extends 'sns/layout.html' %}
+{% load my_templatetag %}
+
+{% block title %}Index{% endblock %}
+
+{% block header %}
+<script>
+function sendGroupForm(page) {
+    document.group_form.action += page;
+    document.group_form.submit();
+}
+</script>
+<h2 class="display-4 text-primary">SANCOM　SNS</h2>
+{% if messages %}
+<ul class="messages">
+    {% for messag in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<br>
+{% if message1 %}
+<p>※グループと翻訳言語を選択して投稿閲覧します。</p>
+<div>
+    <form action="{% url 'index' %}" method="post" name="group_form">
+        {% csrf_token %}
+        {{check_form}}
+        <br>
+        {{language_form}}
+        <br>
+        <label><button class="btn btn-primary">投稿閲覧</button></label>
+    </form>
+</div>
+<font color="orange">{{message1}}</font>
+{% endif %}
+
+{% if message2 %}
+<table class="table mt-3">
+<tr><th>{{message2}}</th></tr>
+{% for item in contents %}
+{% access_list trans_list forloop.counter0 as val %}
+    <tr><td>
+    <p class=""><font size="3"><b>{{item.owner}}</b></font>　<font size="2">({{item.pub_date}})</font></p>
+    <p class~"my-0">
+        <!--
+        {% if item.group.title == 'public' %}
+        <span class="bg-info text-light px-1">一般</span>
+        {% endif %}
+        -->
+        {{item.content}}
+        <br>
+        <font color="orange">{{val}}</font>
+        <!--<font color="orange">{{ trans_list.forloop.counter0 }}</font>-->
+    </p>
+    {% if item.images != "ozawa.jpg" %}
+    <p class=""><img src='{{item.images.url}}' width=150></p>
+    {% endif %}
+    {% if item.share_id > 0 %}
+    <ul><li class="text-black-50">"{{item.get_share}}"</li></ul>
+    {% endif %}
+    <span class="float-left text-info">
+        <a href="{% url 'good' item.id %}"><button class="py-0">いいね</button></a> {{item.good_count}}　<a href="{% url 'share' item.id %}"><button class="py-0">シェア</button></a> {{item.share_count}}
+        <!--
+        シェア={{item.share_count}}　いいね={{item.good_count}}
+        -->
+    </span>
+    <span class="float-right">
+        <a href="{% url 'add' %}?name={{item.owner}}"><button class="py-0">友達申請</button></a>
+        <!--
+        <a href="{% url 'share' item.id %}"><button class="py-0">シェア</button></a>
+        <a href="{% url 'good' item.id %}"><button class="py-0">いいね</button></a>
+        -->
+    </span>
+    </td></tr>
+{% endfor %}
+</table>
+
+<ul class="pagination justify-content-center">
+    {% if contents.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="javascript:sendGroupForm(1);">&laquo;　first</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="javascript:sendGroupForm({{contents.previous_page_number}});">&laquo;　prev</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link">&laquo;　first</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link">&laquo;　prev</a>
+    </li>
+    {% endif %}
+    <li class="page-item">
+        <a class="page-link">{{contents.number}}/{{contents.paginator.num_pages}}</a>
+    </li>
+    {% if contents.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="javascript:sendGroupForm({{contents.next_page_number }});">next　&raquo;</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="javascript:sendGroupForm({{contents.paginator.num_pages}});">last　&raquo;</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link">next　&raquo;</a>
+    </li>
+    <li class="page-item">
+        <a class="page-link">last　&raquo;</a>
+    </li>
+    {% endif %}
+</ul>
+
+{% endif %}
+{% endblock %}

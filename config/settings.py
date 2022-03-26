@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'sancom_free',
+    'sns',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media', # 画像アップロード用
             ],
         },
     },
@@ -160,5 +162,6 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
     STATIC_ROOT = '/home/xiaoze/src/sancom_app/static'
+    MEDIA_ROOT = '/home/xiaoze/src/sancom_app/media'
     #STATIC_ROOT = '/usr/share/nginx/html/static'
-    MEDIA_ROOT = '/usr/share/nginx/html/media'
+    #MEDIA_ROOT = '/usr/share/nginx/html/media'
