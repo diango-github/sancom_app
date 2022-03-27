@@ -31,7 +31,6 @@ urlpatterns = [
     path('sancom_free/', include('sancom_free.urls')),
     path('sns/', include('sns.urls')),
     path('email/', emailfunc),
-    #url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  #追加
 ]
 
 if settings.DEBUG:

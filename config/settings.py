@@ -162,6 +162,6 @@ if not DEBUG:
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
     STATIC_ROOT = '/home/xiaoze/src/sancom_app/static'
-    MEDIA_ROOT = '/home/xiaoze/src/sancom_app/media'
+    #MEDIA_ROOT = '/home/xiaoze/src/sancom_app/media'
     #STATIC_ROOT = '/usr/share/nginx/html/static'
-    #MEDIA_ROOT = '/usr/share/nginx/html/media'
+    MEDIA_ROOT = '/usr/share/nginx/html/media'
