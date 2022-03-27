@@ -10,7 +10,7 @@ function sendGroupForm(page) {
     document.group_form.submit();
 }
 </script>
-<h2 class="display-4 text-primary">SANCOM　SNS</h2>
+<h5 class="display-5 text-primary">SC-SNS</h5>
 {% if messages %}
 <ul class="messages">
     {% for messag in messages %}
@@ -23,7 +23,7 @@ function sendGroupForm(page) {
 {% block content %}
 <br>
 {% if message1 %}
-<p>※グループと翻訳言語を選択して投稿閲覧します。</p>
+<p>グループと翻訳言語を選択して閲覧します</p>
 <div>
     <form action="{% url 'index' %}" method="post" name="group_form">
         {% csrf_token %}
@@ -31,7 +31,7 @@ function sendGroupForm(page) {
         <br>
         {{language_form}}
         <br>
-        <label><button class="btn btn-primary">投稿閲覧</button></label>
+        <label><button class="btn btn-primary">閲覧</button></label>
     </form>
 </div>
 <font color="orange">{{message1}}</font>
@@ -81,17 +81,17 @@ function sendGroupForm(page) {
 <ul class="pagination justify-content-center">
     {% if contents.has_previous %}
     <li class="page-item">
-        <a class="page-link" href="javascript:sendGroupForm(1);">&laquo;　first</a>
+        <a class="page-link" href="javascript:sendGroupForm(1);">&laquo; 最初</a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="javascript:sendGroupForm({{contents.previous_page_number}});">&laquo;　prev</a>
+        <a class="page-link" href="javascript:sendGroupForm({{contents.previous_page_number}});">&laquo; 前</a>
     </li>
     {% else %}
     <li class="page-item">
-        <a class="page-link">&laquo;　first</a>
+        <a class="page-link">&laquo; 最初</a>
     </li>
     <li class="page-item">
-        <a class="page-link">&laquo;　prev</a>
+        <a class="page-link">&laquo; 前</a>
     </li>
     {% endif %}
     <li class="page-item">
@@ -99,17 +99,17 @@ function sendGroupForm(page) {
     </li>
     {% if contents.has_next %}
     <li class="page-item">
-        <a class="page-link" href="javascript:sendGroupForm({{contents.next_page_number }});">next　&raquo;</a>
+        <a class="page-link" href="javascript:sendGroupForm({{contents.next_page_number }});">次 &raquo;</a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="javascript:sendGroupForm({{contents.paginator.num_pages}});">last　&raquo;</a>
+        <a class="page-link" href="javascript:sendGroupForm({{contents.paginator.num_pages}});">最後 &raquo;</a>
     </li>
     {% else %}
     <li class="page-item">
-        <a class="page-link">next　&raquo;</a>
+        <a class="page-link">次 &raquo;</a>
     </li>
     <li class="page-item">
-        <a class="page-link">last　&raquo;</a>
+        <a class="page-link">最後 &raquo;</a>
     </li>
     {% endif %}
 </ul>
