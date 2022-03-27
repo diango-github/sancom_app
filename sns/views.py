@@ -96,8 +96,8 @@ def index(request, page=1):
         # メッセージの取得
         messages = get_your_group_message(request.user, glist, page)
         # message
-        message1 = "※翻訳はオレンジ色で表示"
-        message2 = "一般投稿"
+        message1 = "※翻訳は橙色で表示"
+        message2 = ""
 
     # 共通処理
     params = {
